@@ -12,4 +12,4 @@ class FixedDecisionSensitivityMethod(AbstractSensitivityMethod):
 
     def _calc_sensitivity_internal(self, x, y_hat, epsilon):
         z_hat = self.lp_solver.solve_lp(y_hat)
-        return torch.norm(z_hat, p=self.p, dim=1, keepdim=True)
+        return epsilon * torch.norm(z_hat, p=self.p, dim=1, keepdim=True)

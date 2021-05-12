@@ -28,5 +28,5 @@ class LPSolver(object):
         # TODO: need to implement this!
         raise NotImplementedError()
 
-    def get_constrains(self):
+    def get_constraints(self):
         return self.constraints

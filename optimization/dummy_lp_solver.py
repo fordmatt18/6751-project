@@ -30,5 +30,5 @@ class DummyLPSolver(object):
         max_val = float(torch.max(z))
         return (min_val >= 0.0) and (max_val <= 1.0)
 
-    def get_constrains(self):
+    def get_constraints(self):
         return self.constraints
