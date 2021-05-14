@@ -42,7 +42,7 @@ class MultipleEpsilonWeightingMethod(AbstractWeightingMethod):
         self.epsilon_list = epsilon_list
 
     def _calc_weights_internal(self, x, predict_model):
-        s_list = [self.sensitivity_method.calc_sensitivity(x, predict_model, e_)
+        s_list = [self.sensitivity_method.calc_sensitivity_scipy(x, predict_model, e_)
                   for e_ in self.epsilon_list]
         return torch.cat(s_list, dim=1).mean(1, keepdim=True)
 

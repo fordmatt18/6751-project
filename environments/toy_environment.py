@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 from environments.abstract_environment import AbstractEnvironment
 
 
@@ -34,7 +35,9 @@ class ToyEnvironment(AbstractEnvironment):
         """
         :return: constraints for given environment
         """
-        return None
+        a_ub = np.eye(self.decision_dim)
+        b_ub = np.ones(self.decision_dim)
+        return {"A_eq": None, "b_eq": None, "A_ub": a_ub, "b_ub": b_ub}
 
     def get_context_dim(self):
         """

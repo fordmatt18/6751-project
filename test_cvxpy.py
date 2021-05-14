@@ -71,7 +71,8 @@ def calc_sensitivity_cvxpy(a, b, x, y_hat, epsilon, batch_size):
     return torch.from_numpy(sensitivity_array).float()
 
 
-def calc_sensitivity_scipy(a, b, x, y_hat, epsilon, batch_size):
+def calc_sensitivity_scipy(a, b, x, y_hat, epsilon, batch_size,
+                           method="highs-ds"):
     n = len(x)
     d, m = a.shape
     assert b.shape == (d,)
@@ -97,7 +98,7 @@ def calc_sensitivity_scipy(a, b, x, y_hat, epsilon, batch_size):
         #                    z_cat >= 0])
         # prob.solve()
         # z0_cat = z_cat.value
-        result_0 = linprog(c=y_hat_cat, A_eq=a_cat, b_eq=b_cat, method="highs")
+        result_0 = linprog(c=y_hat_cat, A_eq=a_cat, b_eq=b_cat, method=method)
         z0_cat = result_0.x
 
         # check if decision problem unbounded, infeasible, or has an optimal solution
@@ -141,16 +142,25 @@ def calc_sensitivity_scipy(a, b, x, y_hat, epsilon, batch_size):
                 a_eq[k * d + i, k * m + i] = -1.0
                 b_eq[k * d + i] = s * z0_cat[i * m + j]
 
-            result = linprog(c=c, A_eq=a_eq, b_eq=b_eq,
-                             A_ub=a_ineq, b_ub=b_ineq, method="highs")
-            zh = result.x
+            try:
+                result = linprog(c=c, A_eq=a_eq, b_eq=b_eq,
+                                 A_ub=a_ineq, b_ub=b_ineq, method=method)
+                zh = result.x
+                z_s_batch = zh[:k*m].reshape(k, m)
+                h_batch = zh[k*m:]
+            except:
+                print("failure with status %d at batch iter %d (j=%d, s=%f)"
+                      % (result.status, batch_i, j, s))
+                result = linprog(c=c, A_eq=a_eq, b_eq=b_eq,
+                                 A_ub=a_ineq, b_ub=b_ineq)
+                zh = result.x
+                z_s_batch = zh[:k*m].reshape(k, m)
+                h_batch = zh[k*m:]
 
             # re-construct optimal solutions
             for i in range(k):
                 y_hat_batch = y_hat_cat.reshape(k, m)
                 z0_batch = z0_cat.reshape(k, m)
-                z_s_batch = zh[:k*m].reshape(k, m)
-                h_batch = zh[k*m:]
                 opt_val_batch = ((y_hat_batch * (z0_batch - z_s_batch)).sum(1)
                                  + epsilon * h_batch)
                 opt_val_list.append(opt_val_batch)
@@ -165,14 +175,14 @@ def debug():
     # generate data
     n = 1000  # number of obervations
     p = 3  # dimension of context variable x or number of predictors
-    batch_size = 10
+    batch_size = 2
     eps = 1e-1  # convergence criteria
     sigma = .03
 
     # generate LP constraints
 
-    d = 10  # number of constraints
-    m_main = 5  # number of non-slack variables
+    d = 25  # number of constraints
+    m_main = 40  # number of non-slack variables
     m = m_main + d  # total number of variables (including slack variables)
     seed = 42
     np.random.seed(seed)
@@ -181,6 +191,8 @@ def debug():
     a_ineq = np.random.randn(d, m_main) ** 2
     a = np.concatenate([a_ineq, np.eye(d)], axis=1)
     b = np.random.randn(d) ** 2  # RHS vector for equality constraints
+    print(a)
+    print(b)
 
     epsilon = 0.1  # radius of wasserstein ball
 

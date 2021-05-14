@@ -8,8 +8,8 @@ import numpy as np
 from experiment_setups.toy_setups import toy_setup
 from utils.hyperparameter_optimization import iterate_placeholder_values, \
     fill_placeholders, fill_global_values
-# from optimization.lp_solver import LPSolver
-from optimization.dummy_lp_solver import DummyLPSolver as LPSolver
+from optimization.lp_solver import LPSolver
+# from optimization.dummy_lp_solver import DummyLPSolver as LPSolver
 
 setup_list = [toy_setup]
 save_dir = "results_toy"
@@ -90,7 +90,8 @@ def do_job(setup, n, rep_i):
     context_dim = env.get_context_dim()
     decision_dim = env.get_decision_dim()
     lp_solver = LPSolver(constraints=constraints, context_dim=context_dim,
-                         decision_dim=decision_dim)
+                         decision_dim=decision_dim,
+                         batch_size=setup["batch_size"])
 
     # estimate oracle policy value on test data
     z_oracle = lp_solver.solve_lp(y_test)
