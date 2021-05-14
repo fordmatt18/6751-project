@@ -16,86 +16,86 @@ from sensitivity_methods.variable_decision_method import \
 from utils.hyperparameter_optimization import HyperparameterPlaceholder
 
 method_list = [
-    # {
-    #     "name": "VariableDecisionLinear",
-    #     "placeholder_options": {
-    #         "epsilon": [1e-2, 1e-1, 1e0],
-    #     },
-    #     "class": IterativeSensitivityMethod,
-    #     "args": {
-    #         "num_iter": 2,
-    #         "sensitivity_class": VariableDecisionSensitivityMethod,
-    #         "sensitivity_args": {
-    #             "batch_size": 10,
-    #         },
-    #         "weighting_class": SingleEpsilonWeightingMethod,
-    #         "weighting_args": {
-    #             "epsilon": HyperparameterPlaceholder("epsilon"),
-    #         },
-    #         "predict_class": LinearPredictMethod,
-    #         "predict_args": {},
-    #     },
-    # },
-    # {
-    #     "name": "MaximumSuboptimalityLinear",
-    #     "placeholder_options": {
-    #         "epsilon": [1e-2, 1e-1, 1e0],
-    #     },
-    #     "class": IterativeSensitivityMethod,
-    #     "args": {
-    #         "num_iter": 2,
-    #         "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
-    #         "sensitivity_args": {
-    #             "batch_size": 10,
-    #         },
-    #         "weighting_class": SingleEpsilonWeightingMethod,
-    #         "weighting_args": {
-    #             "epsilon": HyperparameterPlaceholder("epsilon"),
-    #         },
-    #         "predict_class": LinearPredictMethod,
-    #         "predict_args": {},
-    #     },
-    # },
-    # {
-    #     "name": "FixedDecisionLinear",
-    #     "placeholder_options": {
-    #         "p": [1, 2, float("inf")],
-    #     },
-    #     "class": IterativeSensitivityMethod,
-    #     "args": {
-    #         "num_iter": 2,
-    #         "sensitivity_class": FixedDecisionSensitivityMethod,
-    #         "sensitivity_args": {
-    #             "p": HyperparameterPlaceholder("p"),
-    #         },
-    #         "weighting_class": SingleEpsilonWeightingMethod,
-    #         "weighting_args": {
-    #             "epsilon": 1.0,
-    #         },
-    #         "predict_class": LinearPredictMethod,
-    #         "predict_args": {},
-    #     },
-    # },
-    # {
-    #     "name": "FixedDecisionFlexible",
-    #     "placeholder_options": {
-    #         "p": [1, 2, float("inf")],
-    #     },
-    #     "class": IterativeSensitivityMethod,
-    #     "args": {
-    #         "num_iter": 2,
-    #         "sensitivity_class": FixedDecisionSensitivityMethod,
-    #         "sensitivity_args": {
-    #             "p": HyperparameterPlaceholder("p"),
-    #         },
-    #         "weighting_class": SingleEpsilonWeightingMethod,
-    #         "weighting_args": {
-    #             "epsilon": 1.0,
-    #         },
-    #         "predict_class": FlexiblePredictMethod,
-    #         "predict_args": {},
-    #     },
-    # },
+    {
+        "name": "VariableDecisionLinear",
+        "placeholder_options": {
+            "epsilon": [1e-2, 1e-1, 1e0],
+        },
+        "class": IterativeSensitivityMethod,
+        "args": {
+            "num_iter": 2,
+            "sensitivity_class": VariableDecisionSensitivityMethod,
+            "sensitivity_args": {
+                "batch_size": 10,
+            },
+            "weighting_class": SingleEpsilonWeightingMethod,
+            "weighting_args": {
+                "epsilon": HyperparameterPlaceholder("epsilon"),
+            },
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
+    {
+        "name": "MaximumSuboptimalityLinear",
+        "placeholder_options": {
+            "epsilon": [1e-2, 1e-1, 1e0],
+        },
+        "class": IterativeSensitivityMethod,
+        "args": {
+            "num_iter": 2,
+            "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
+            "sensitivity_args": {
+                "batch_size": 10,
+            },
+            "weighting_class": SingleEpsilonWeightingMethod,
+            "weighting_args": {
+                "epsilon": HyperparameterPlaceholder("epsilon"),
+            },
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
+    {
+        "name": "FixedDecisionLinear",
+        "placeholder_options": {
+            "p": [1, 2, float("inf")],
+        },
+        "class": IterativeSensitivityMethod,
+        "args": {
+            "num_iter": 2,
+            "sensitivity_class": FixedDecisionSensitivityMethod,
+            "sensitivity_args": {
+                "p": HyperparameterPlaceholder("p"),
+            },
+            "weighting_class": SingleEpsilonWeightingMethod,
+            "weighting_args": {
+                "epsilon": 1.0,
+            },
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
+    {
+        "name": "FixedDecisionFlexible",
+        "placeholder_options": {
+            "p": [1, 2, float("inf")],
+        },
+        "class": IterativeSensitivityMethod,
+        "args": {
+            "num_iter": 2,
+            "sensitivity_class": FixedDecisionSensitivityMethod,
+            "sensitivity_args": {
+                "p": HyperparameterPlaceholder("p"),
+            },
+            "weighting_class": SingleEpsilonWeightingMethod,
+            "weighting_args": {
+                "epsilon": 1.0,
+            },
+            "predict_class": FlexiblePredictMethod,
+            "predict_args": {},
+        },
+    },
 ]
 
 benchmark_list = [
@@ -126,7 +126,7 @@ benchmark_list = [
 
 # n_range = [10000, 5000, 2000, 1000, 500, 200, 100]
 # n_range = [1000, 100]
-n_range = [100]
+n_range = [1000]
 num_test = 10000
 num_reps = 32
 num_procs = 1
@@ -136,7 +136,7 @@ batch_size = 1
 toy_setup = {
     "setup_name": "toy_setup",
     "environment": {
-        "class": ShortestPathEnvironment,
+        "class": ToyEnvironment,
         "args": {}
     },
     "n_range": n_range,

@@ -34,9 +34,9 @@ class ShortestPathEnvironment(AbstractEnvironment):
         """
         x = torch.randn(n, self.context_dim)
         m = self.decision_dim
-        poly_x = torch.from_numpy(self.poly.fit_transform(x)).float()
+        y_mean = self.compute_oracle_mean_y(x)
         noise = 0.75 + 0.5 * torch.rand(n, m)
-        y = (poly_x @ self.w.T + 3) * noise
+        y = y_mean * noise
         return x, y
 
     def _encode_coord(self, x, y):
@@ -92,3 +92,7 @@ class ShortestPathEnvironment(AbstractEnvironment):
         :return: decision_dim for given environment
         """
         return self.decision_dim
+
+    def compute_oracle_mean_y(self, x):
+        poly_x = torch.from_numpy(self.poly.fit_transform(x)).float()
+        return poly_x @ self.w.T + 3

@@ -11,22 +11,25 @@ class AbstractEnvironment(object):
         :return: tuple (x, y), where x is of shape (n, context_dim),
             and y is of shape (n, decision_dim)
         """
-        return NotImplementedError()
+        raise NotImplementedError()
 
     def get_constraints(self):
         """
         :return: constraints for given environment
         """
-        return NotImplementedError()
+        raise NotImplementedError()
 
     def get_context_dim(self):
         """
         :return: context_dim for given environment
         """
-        return NotImplementedError()
+        raise NotImplementedError()
 
     def get_decision_dim(self):
         """
         :return: decision_dim for given environment
         """
-        return NotImplementedError()
+        raise NotImplementedError()
+
+    def compute_oracle_mean_y(self, x):
+        raise NotImplementedError()

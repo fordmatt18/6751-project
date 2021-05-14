@@ -3,7 +3,7 @@ from torch.nn.functional import one_hot
 
 
 class DummyLPSolver(object):
-    def __init__(self, constraints, context_dim, decision_dim):
+    def __init__(self, constraints, context_dim, decision_dim, batch_size=None):
         """
         :param constraints: general constraints on feasible Z for LP
         :param context_dim: dimensionality of context (x)
@@ -12,6 +12,7 @@ class DummyLPSolver(object):
         self.constraints = constraints
         self.context_dim = context_dim
         self.decision_dim = decision_dim
+        self.batch_size = batch_size
 
     def solve_lp(self, y):
         """

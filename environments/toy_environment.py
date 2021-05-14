@@ -26,8 +26,7 @@ class ToyEnvironment(AbstractEnvironment):
             and y is of shape (n, decision_dim)
         """
         x = torch.randn(n, self.context_dim)
-        h = softplus(x @ self.theta)
-        y_mean = h.reshape(-1, 1) + self.y_0.reshape(1, -1)
+        y_mean = self.compute_oracle_mean_y(x)
         y = y_mean + torch.randn(y_mean.shape) * self.y_sigma
         return x, y
 
@@ -50,3 +49,7 @@ class ToyEnvironment(AbstractEnvironment):
         :return: decision_dim for given environment
         """
         return self.decision_dim
+
+    def compute_oracle_mean_y(self, x):
+        h = softplus(x @ self.theta)
+        return h.reshape(-1, 1) + self.y_0.reshape(1, -1)

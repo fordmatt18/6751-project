@@ -94,7 +94,8 @@ def do_job(setup, n, rep_i):
                          batch_size=setup["batch_size"])
 
     # estimate oracle policy value on test data
-    z_oracle = lp_solver.solve_lp(y_test)
+    y_test_mean = env.compute_oracle_mean_y(x_test)
+    z_oracle = lp_solver.solve_lp(y_test_mean)
     oracle_policy_val = float((z_oracle * y_test).sum(1).mean(0))
 
     if verbose:
