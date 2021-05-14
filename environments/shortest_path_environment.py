@@ -35,8 +35,8 @@ class ShortestPathEnvironment(AbstractEnvironment):
         x = torch.randn(n, self.context_dim)
         m = self.decision_dim
         poly_x = torch.from_numpy(self.poly.fit_transform(x)).float()
-        noise = 0.75 + 0.5 * torch.rand(m)
-        y = (poly_x @ self.w.T + 3) @ torch.diag(noise)
+        noise = 0.75 + 0.5 * torch.rand(n, m)
+        y = (poly_x @ self.w.T + 3) * noise
         return x, y
 
     def _encode_coord(self, x, y):

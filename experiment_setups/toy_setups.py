@@ -119,7 +119,7 @@ benchmark_list = [
         "name": "SPO+",
         "class": SPOPlus,
         "args": {
-            "lmbda": 0,
+            "lmbda": 0.1,
         }
     }
 ]
@@ -127,7 +127,7 @@ benchmark_list = [
 # n_range = [10000, 5000, 2000, 1000, 500, 200, 100]
 # n_range = [1000, 100]
 n_range = [100]
-num_test = 100000
+num_test = 10000
 num_reps = 32
 num_procs = 1
 batch_size = 1
