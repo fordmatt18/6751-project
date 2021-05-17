@@ -5,6 +5,7 @@ from multiprocessing import Queue, Process
 
 import numpy as np
 
+from experiment_setups.shortest_paths_setup import shortest_paths_setup
 from experiment_setups.toy_setups import toy_setup
 from utils.hyperparameter_optimization import iterate_placeholder_values, \
     fill_placeholders, fill_global_values
@@ -97,10 +98,13 @@ def do_job(setup, n, rep_i):
     y_test_mean = env.compute_oracle_mean_y(x_test)
     z_oracle = lp_solver.solve_lp(y_test_mean)
     oracle_policy_val = float((z_oracle * y_test).sum(1).mean(0))
+    z_upper = lp_solver.solve_lp(-1.0 * y_test_mean)
+    policy_val_upper = float((z_upper * y_test).sum(1).mean(0))
 
     if verbose:
         print("")
         print("oracle policy value estimate:", oracle_policy_val)
+        print("worst-case policy value::", policy_val_upper)
 
     # iterate over end-to-end methods
     if verbose:
@@ -131,6 +135,9 @@ def do_job(setup, n, rep_i):
             z_test = policy.decide(x_test)
             assert lp_solver.all_feasible(z_test)
             pv_estimate = float((z_test * y_test).sum(1).mean(0))
+            rel_regret = ((pv_estimate - oracle_policy_val)
+                          / (policy_val_upper - oracle_policy_val))
+            regret = pv_estimate - oracle_policy_val
 
             row = {
                 "record_kind": "end-to-end",
@@ -138,7 +145,8 @@ def do_job(setup, n, rep_i):
                 "pv_estimate": pv_estimate,
                 "method": method["name"],
                 "oracle_pv": oracle_policy_val,
-                "regret": pv_estimate - oracle_policy_val,
+                "regret": regret,
+                "relative_regret": rel_regret,
                 "placeholders": placeholder_values,
                 "rep": rep_i,
             }
@@ -159,6 +167,9 @@ def do_job(setup, n, rep_i):
         z_test = policy.decide(x_test)
         assert lp_solver.all_feasible(z_test)
         pv_estimate = float((z_test * y_test).sum(1).mean(0))
+        rel_regret = ((pv_estimate - oracle_policy_val)
+                      / (policy_val_upper - oracle_policy_val))
+        regret = pv_estimate - oracle_policy_val
 
         row = {
             "record_kind": "benchmark",
@@ -166,7 +177,8 @@ def do_job(setup, n, rep_i):
             "pv_estimate": pv_estimate,
             "method": benchmark["name"],
             "oracle_pv": oracle_policy_val,
-            "regret": pv_estimate - oracle_policy_val,
+            "regret": regret,
+            "relative_regret": rel_regret,
             "rep": rep_i,
         }
         results.append(row)
@@ -178,7 +190,7 @@ def do_job(setup, n, rep_i):
 
 
 def build_aggregate_results(results):
-    results_list_collection = defaultdict(list)
+    regret_list_collection = defaultdict(list)
 
     # put together lists of results for each method
     for row in results:
@@ -197,19 +209,19 @@ def build_aggregate_results(results):
             raise ValueError("Invalid Record Kind: %s" % row["record_kind"])
 
         key = (row["n"], method_key)
-        results_list_collection[key].append(row["regret"])
+        regret_list_collection[key].append(row["relative_regret"])
 
     # compute aggregate statistics
     aggregate_results = {}
-    for key, results_list in sorted(results_list_collection.items()):
+    for key, results_list in sorted(regret_list_collection.items()):
         n, method_key = key
         results_key = "%05d___%s" % (n, method_key)
         regret_array = np.array(results_list)
         mean_regret = float(regret_array.mean())
         std_regret = float(regret_array.std())
         aggregate_results[results_key] = {
-            "mean_regret": mean_regret,
-            "std_regret": std_regret,
+            "mean_relative_regret": mean_regret,
+            "std_relative_regret": std_regret,
         }
     return aggregate_results
 

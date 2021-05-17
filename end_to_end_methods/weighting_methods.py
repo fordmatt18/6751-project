@@ -13,9 +13,10 @@ class AbstractWeightingMethod(object):
         assert isinstance(sensitivity_method, AbstractSensitivityMethod)
         self.sensitivity_method = sensitivity_method
 
-    def calc_weights(self, x, predict_model):
+    def calc_weights(self, x, predict_model, eps=1e-5):
         weights = self._calc_weights_internal(x, predict_model)
-        assert (weights >= 0).all()
+        assert (weights >= -eps).all()
+        weights = weights.clamp(0.0, float("inf"))
         if weights.sum() == 0:
             return torch.ones(weights.shape)
         else:

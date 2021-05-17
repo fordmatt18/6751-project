@@ -3,7 +3,7 @@ import torch
 from end_to_end_methods.abstract_end_to_end import AbstractEndToEnd
 
 
-class IterativeSensitivityMethod(AbstractEndToEnd):
+class IterativeSWMethod(AbstractEndToEnd):
     def __init__(self, lp_solver, context_dim, decision_dim, num_iter,
                  sensitivity_class, sensitivity_args, weighting_class,
                  weighting_args, predict_class, predict_args):
