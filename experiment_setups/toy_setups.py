@@ -3,6 +3,8 @@ from benchmark_methods.spo_plus import SPOPlus
 from end_to_end_methods.iterative_sensitivity_method import \
     IterativeSensitivityMethod
 from end_to_end_methods.weighting_methods import SingleEpsilonWeightingMethod
+from environments.random_resource_constraint_environment import \
+    RandomResourceConstraintEnvironment
 from environments.shortest_path_environment import ShortestPathEnvironment
 from environments.toy_environment import ToyEnvironment
 from predict_methods.nn_predict_methods import LinearPredictMethod, \
@@ -36,26 +38,26 @@ method_list = [
             "predict_args": {},
         },
     },
-    {
-        "name": "MaximumSuboptimalityLinear",
-        "placeholder_options": {
-            "epsilon": [1e-2, 1e-1, 1e0],
-        },
-        "class": IterativeSensitivityMethod,
-        "args": {
-            "num_iter": 2,
-            "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
-            "sensitivity_args": {
-                "batch_size": 10,
-            },
-            "weighting_class": SingleEpsilonWeightingMethod,
-            "weighting_args": {
-                "epsilon": HyperparameterPlaceholder("epsilon"),
-            },
-            "predict_class": LinearPredictMethod,
-            "predict_args": {},
-        },
-    },
+    # {
+    #     "name": "MaximumSuboptimalityLinear",
+    #     "placeholder_options": {
+    #         "epsilon": [1e-2, 1e-1, 1e0],
+    #     },
+    #     "class": IterativeSensitivityMethod,
+    #     "args": {
+    #         "num_iter": 2,
+    #         "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
+    #         "sensitivity_args": {
+    #             "batch_size": 10,
+    #         },
+    #         "weighting_class": SingleEpsilonWeightingMethod,
+    #         "weighting_args": {
+    #             "epsilon": HyperparameterPlaceholder("epsilon"),
+    #         },
+    #         "predict_class": LinearPredictMethod,
+    #         "predict_args": {},
+    #     },
+    # },
     {
         "name": "FixedDecisionLinear",
         "placeholder_options": {
@@ -136,8 +138,12 @@ batch_size = 1
 toy_setup = {
     "setup_name": "toy_setup",
     "environment": {
-        "class": ToyEnvironment,
-        "args": {}
+        "class": RandomResourceConstraintEnvironment,
+        "args": {
+            "context_dim": 3,
+            "num_products": 20,
+            "num_resources": 10,
+        }
     },
     "n_range": n_range,
     "num_test": num_test,
