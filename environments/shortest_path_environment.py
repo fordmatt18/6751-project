@@ -22,6 +22,11 @@ class ShortestPathEnvironment(AbstractEnvironment):
                                        interaction_only=True)
         self.a = self._build_a()
         self.b = self._build_b()
+
+        # remove final constraint, which is redundant
+        # self.a = self.a[:-1]
+        # self.b = self.b[:-1]
+
         self.context_dim = 5
         self.decision_dim = self.a.shape[1]
 
@@ -37,6 +42,12 @@ class ShortestPathEnvironment(AbstractEnvironment):
         y_mean = self.compute_oracle_mean_y(x)
         noise = 0.75 + 0.5 * torch.rand(n, m)
         y = y_mean * noise
+        # print("x")
+        # print(x[:20])
+        # print("")
+        # print("y")
+        # print(y[:20])
+        # print("")
         return x, y
 
     def _encode_coord(self, x, y):
@@ -70,16 +81,26 @@ class ShortestPathEnvironment(AbstractEnvironment):
         return a
 
     def _build_b(self):
-        b = torch.zeros(self.num_x * self.num_y)
-        b[0] = 1.0
-        b[-1] = -1.0
+        b = np.zeros(self.num_x * self.num_y)
+        b[0] = -1.0
+        b[-1] = 1.0
         return b
 
     def get_constraints(self):
         """
         :return: constraints for given environment
         """
-        return {"A_eq": self.a, "b_eq": self.b, "A_ub": None, "b_ub": None}
+        a_eq = self.a
+        b_eq = self.b
+        # a_ub = None
+        # b_ub = None
+        a_ub = np.eye(self.decision_dim)
+        b_ub = np.ones(self.decision_dim)
+        # a_eq = None
+        # b_eq = None
+        # a_ub = np.concatenate([self.a, -1.0 * self.a], axis=0)
+        # b_ub = np.concatenate([self.b, -1.0 * self.b], axis=0)
+        return {"A_eq": a_eq, "b_eq": b_eq, "A_ub": a_ub, "b_ub": b_ub}
 
     def get_context_dim(self):
         """

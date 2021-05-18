@@ -12,8 +12,8 @@ from utils.hyperparameter_optimization import iterate_placeholder_values, \
 from optimization.lp_solver import LPSolver
 # from optimization.dummy_lp_solver import DummyLPSolver as LPSolver
 
-setup_list = [toy_setup]
-save_dir = "results_toy"
+setup_list = [shortest_paths_setup]
+save_dir = "results_shortest_paths"
 
 
 def main():
@@ -98,13 +98,13 @@ def do_job(setup, n, rep_i):
     y_test_mean = env.compute_oracle_mean_y(x_test)
     z_oracle = lp_solver.solve_lp(y_test_mean)
     oracle_policy_val = float((z_oracle * y_test).sum(1).mean(0))
-    z_upper = lp_solver.solve_lp(-1.0 * y_test_mean)
-    policy_val_upper = float((z_upper * y_test).sum(1).mean(0))
+    z_worst = lp_solver.solve_lp(-1.0 * y_test_mean)
+    policy_val_upper = float((z_worst * y_test).sum(1).mean(0))
 
     if verbose:
         print("")
         print("oracle policy value estimate:", oracle_policy_val)
-        print("worst-case policy value::", policy_val_upper)
+        print("worst-case policy value:", policy_val_upper)
 
     # iterate over end-to-end methods
     if verbose:

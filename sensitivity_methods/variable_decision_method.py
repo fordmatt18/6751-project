@@ -28,7 +28,7 @@ class VariableDecisionSensitivityMethod(AbstractSensitivityMethod):
         else:
             assert a_eq.shape[1] == a_ub.shape[1]
             num_slack = a_ub.shape[0]
-            zeros = np.zeros((num_slack, num_slack))
+            zeros = np.zeros((a_eq.shape[0], num_slack))
             a_eq_ext = np.concatenate([a_eq, zeros], axis=1)
             a_ub_ext = np.concatenate([a_ub, np.eye(num_slack)], axis=1)
             a = np.concatenate([a_eq_ext, a_ub_ext], axis=0)

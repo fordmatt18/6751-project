@@ -58,7 +58,6 @@ class LPSolver(object):
                                  (batch_i + 1) * self.batch_size))
             k = len(idx)
 
-            # solve first decision problem to get z0
             y_cat = y[idx, :].flatten()
             if a_eq is not None:
                 a_eq_cat = scipy.linalg.block_diag(*[a_eq for _ in range(k)])
@@ -104,7 +103,7 @@ class LPSolver(object):
 
             a_times_z = (a_eq.reshape(1, d, m)
                          * z.numpy().reshape(n, 1, m)).sum(2)
-            errors = torch.abs(a_times_z - b_eq.reshape(1, d))
+            errors = np.abs(a_times_z - b_eq.reshape(1, d))
             if (errors > tol).any():
                 return False
 
