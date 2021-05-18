@@ -22,13 +22,14 @@ from utils.hyperparameter_optimization import HyperparameterPlaceholder
 
 method_list = [
     {
-        "name": "VariableDecisionLinearIter",
+        "name": "VariableDecisionLinear",
         "placeholder_options": {
             "epsilon": [1e-1, 1e0, 1e1],
+            "num_iter": [2, 3, 5]
         },
         "class": IterativeSWMethod,
         "args": {
-            "num_iter": 2,
+            "num_iter": HyperparameterPlaceholder("num_iter"),
             "sensitivity_class": VariableDecisionSensitivityMethod,
             "sensitivity_args": {
                 "batch_size": 10,
@@ -42,34 +43,14 @@ method_list = [
         },
     },
     {
-        "name": "VariableDecisionLinearNP",
-        "placeholder_options": {
-            "epsilon": [1e-1, 1e0, 1e1],
-        },
-        "class": NonparametricSWMethod,
-        "args": {
-            "sensitivity_class": VariableDecisionSensitivityMethod,
-            "sensitivity_args": {
-                "batch_size": 10,
-            },
-            "weighting_class": SingleEpsilonWeightingMethod,
-            "weighting_args": {
-                "epsilon": HyperparameterPlaceholder("epsilon"),
-            },
-            "predict_class": LinearPredictMethod,
-            "predict_args": {},
-            "flexible_predict_class": FlexiblePredictMethod,
-            "flexible_predict_args": {},
-        },
-    },
-    {
-        "name": "MaximumSuboptimalityLinearIter",
+        "name": "MaximumSuboptimalityLinear",
         "placeholder_options": {
             "epsilon-scale": [1.0, 5.0],
+            "num_iter": [2, 3, 5]
         },
         "class": IterativeSWMethod,
         "args": {
-            "num_iter": 2,
+            "num_iter": HyperparameterPlaceholder("num_iter"),
             "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
             "sensitivity_args": {
                 "batch_size": 10,
@@ -81,38 +62,17 @@ method_list = [
             },
             "predict_class": LinearPredictMethod,
             "predict_args": {},
-        },
-    },
-    {
-        "name": "MaximumSuboptimalityLinearNP",
-        "placeholder_options": {
-            "epsilon-scale": [1.0, 5.0],
-        },
-        "class": NonparametricSWMethod,
-        "args": {
-            "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
-            "sensitivity_args": {
-                "batch_size": 10,
-            },
-            "weighting_class": ChiSquaredWeightingMethod,
-            "weighting_args": {
-                "n": 5,
-                "scale": HyperparameterPlaceholder("epsilon-scale"),
-            },
-            "predict_class": LinearPredictMethod,
-            "predict_args": {},
-            "flexible_predict_class": FlexiblePredictMethod,
-            "flexible_predict_args": {},
         },
     },
     {
         "name": "FixedDecisionLinear",
         "placeholder_options": {
             "p": [1, 2, float("inf")],
+            "num_iter": [2, 3, 5]
         },
         "class": IterativeSWMethod,
         "args": {
-            "num_iter": 2,
+            "num_iter": HyperparameterPlaceholder("num_iter"),
             "sensitivity_class": FixedDecisionSensitivityMethod,
             "sensitivity_args": {
                 "p": HyperparameterPlaceholder("p"),

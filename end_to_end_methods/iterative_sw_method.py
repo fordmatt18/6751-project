@@ -13,8 +13,9 @@ class IterativeSWMethod(AbstractEndToEnd):
             decision_dim=decision_dim, **sensitivity_args)
         self.weighting_method = weighting_class(
             sensitivity_method=sensitivity_method, **weighting_args)
-        self.predict_model = predict_class(
-            context_dim=context_dim, decision_dim=decision_dim, **predict_args)
+        self.predict_args = predict_args
+        self.predict_class = predict_class
+        self.predict_model = None
         self.w = None
         AbstractEndToEnd.__init__(self, lp_solver, context_dim, decision_dim)
 
@@ -28,6 +29,9 @@ class IterativeSWMethod(AbstractEndToEnd):
 
         for _ in range(self.num_iter):
             # fit prediction model using previous weights
+            self.predict_model = self.predict_class(
+                context_dim=self.context_dim, decision_dim=self.decision_dim,
+                **self.predict_args)
             self.predict_model.fit(x, y, w)
 
             # re-compute weights using prediction solution
@@ -35,6 +39,9 @@ class IterativeSWMethod(AbstractEndToEnd):
 
         # fit final prediction model, and save final weights
         self.w = w
+        self.predict_model = self.predict_class(
+            context_dim=self.context_dim, decision_dim=self.decision_dim,
+            **self.predict_args)
         self.predict_model.fit(x, y, self.w)
 
     def decide(self, x):

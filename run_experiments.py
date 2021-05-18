@@ -110,12 +110,12 @@ def do_job(setup, n, rep_i):
     if verbose:
         print("end-to-end results:")
         print("")
-    for method in setup["methods"]:
-        placeholder_options = method["placeholder_options"]
+    for method_template in setup["methods"]:
+        placeholder_options = method_template["placeholder_options"]
         for placeholder_values in iterate_placeholder_values(
                 placeholder_options):
 
-            method = fill_global_values(method, setup)
+            method = fill_global_values(method_template, setup)
             method = fill_placeholders(method, placeholder_values)
 
             if verbose:
@@ -123,7 +123,7 @@ def do_job(setup, n, rep_i):
                       " (n=%d, rep=%d)" % (method["name"],
                                            setup["setup_name"], n, rep_i))
                 if placeholder_options:
-                    print("using placeholder values: %r" %  placeholder_values)
+                    print("using placeholder values: %r" % placeholder_values)
 
             # set up and fit method
             policy = method["class"](
