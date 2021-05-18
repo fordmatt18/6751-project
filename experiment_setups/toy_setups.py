@@ -4,7 +4,8 @@ from end_to_end_methods.nonparametric_sw_method import \
     NonparametricSWMethod
 from end_to_end_methods.iterative_sw_method import \
     IterativeSWMethod
-from end_to_end_methods.weighting_methods import SingleEpsilonWeightingMethod
+from end_to_end_methods.weighting_methods import SingleEpsilonWeightingMethod, \
+    ChiSquaredWeightingMethod
 from environments.random_resource_constraint_environment import \
     RandomResourceConstraintEnvironment
 from environments.shortest_path_environment import ShortestPathEnvironment
@@ -61,26 +62,49 @@ method_list = [
             "flexible_predict_args": {},
         },
     },
-    # {
-    #     "name": "MaximumSuboptimalityLinear",
-    #     "placeholder_options": {
-    #         "epsilon": [1e-2, 1e-1, 1e0],
-    #     },
-    #     "class": IterativeSensitivityMethod,
-    #     "args": {
-    #         "num_iter": 2,
-    #         "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
-    #         "sensitivity_args": {
-    #             "batch_size": 10,
-    #         },
-    #         "weighting_class": SingleEpsilonWeightingMethod,
-    #         "weighting_args": {
-    #             "epsilon": HyperparameterPlaceholder("epsilon"),
-    #         },
-    #         "predict_class": LinearPredictMethod,
-    #         "predict_args": {},
-    #     },
-    # },
+    {
+        "name": "MaximumSuboptimalityLinearIter",
+        "placeholder_options": {
+            "epsilon-scale": [1.0, 5.0],
+        },
+        "class": IterativeSWMethod,
+        "args": {
+            "num_iter": 2,
+            "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
+            "sensitivity_args": {
+                "batch_size": 10,
+            },
+            "weighting_class": ChiSquaredWeightingMethod,
+            "weighting_args": {
+                "n": 5,
+                "scale": HyperparameterPlaceholder("epsilon-scale"),
+            },
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
+    {
+        "name": "MaximumSuboptimalityLinearNP",
+        "placeholder_options": {
+            "epsilon-scale": [1.0, 5.0],
+        },
+        "class": NonparametricSWMethod,
+        "args": {
+            "sensitivity_class": MaximumSuboptimalitySensitivityMethod,
+            "sensitivity_args": {
+                "batch_size": 10,
+            },
+            "weighting_class": ChiSquaredWeightingMethod,
+            "weighting_args": {
+                "n": 5,
+                "scale": HyperparameterPlaceholder("epsilon-scale"),
+            },
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+            "flexible_predict_class": FlexiblePredictMethod,
+            "flexible_predict_args": {},
+        },
+    },
     {
         "name": "FixedDecisionLinear",
         "placeholder_options": {
@@ -124,7 +148,7 @@ benchmark_list = [
         "name": "SPO+",
         "class": SPOPlus,
         "args": {
-            "lmbda": 0.1,
+            "lmbda": 0.0,
         }
     }
 ]
@@ -142,11 +166,7 @@ toy_setup = {
     "setup_name": "toy_setup",
     "environment": {
         "class": RandomResourceConstraintEnvironment,
-        "args": {
-            "context_dim": 3,
-            "num_products": 20,
-            "num_resources": 10,
-        }
+        "args": {}
     },
     "n_range": n_range,
     "num_test": num_test,
