@@ -17,10 +17,12 @@ class AbstractWeightingMethod(object):
         weights = self._calc_weights_internal(x, predict_model)
         assert (weights >= -eps).all()
         weights = weights.clamp(0.0, float("inf"))
-        if weights.sum() == 0:
+        weights_sum = float(weights.sum())
+        num_weights = weights.shape[0] * weights.shape[1]
+        if weights_sum == 0:
             return torch.ones(weights.shape)
         else:
-            return weights
+            return weights * (num_weights / weights_sum)
 
     def _calc_weights_internal(self, x, predict_model):
         raise NotImplementedError()

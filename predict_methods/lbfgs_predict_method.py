@@ -30,8 +30,7 @@ class LBFGSPredictMethod(AbstractPredictMethod):
             optimizer.zero_grad()
             y_hat = self.model(x)
             assert y_hat.shape == y.shape
-            square_losses = ((y_hat - y) ** 2).sum(1, keepdim=True)
-            weighted_loss = (square_losses * w).mean()
+            weighted_loss = (w * ((y_hat - y) ** 2)).sum(1).mean()
             weighted_loss.backward()
             return weighted_loss
 

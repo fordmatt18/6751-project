@@ -25,7 +25,7 @@ class AbstractSensitivityMethod(object):
         y_hat = predict_model.predict(x)
         assert y_hat.shape == (n, self.decision_dim)
         s = self._calc_sensitivity_internal(x, y_hat, epsilon)
-        assert s.shape == (n, 1)
+        assert s.shape == (n, 1) or s.shape == (n, self.decision_dim)
         return s
 
     def _calc_sensitivity_internal(self, x, y_hat, epsilon):

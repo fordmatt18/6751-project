@@ -6,9 +6,14 @@ from environments.abstract_environment import AbstractEnvironment
 from sklearn.preprocessing import PolynomialFeatures
 
 
+def softplus(x):
+    return (torch.log(1 + torch.exp(-torch.abs(x)))
+            + torch.max(x, torch.zeros_like(x)))
+
+
 class RandomResourceConstraintEnvironment(AbstractEnvironment):
     def __init__(self, context_dim=3, num_products=10, num_resources=5,
-                 poly_deg=5):
+                 poly_deg=2):
         AbstractEnvironment.__init__(self)
         self.context_dim = context_dim
         self.decision_dim = num_products
@@ -16,7 +21,7 @@ class RandomResourceConstraintEnvironment(AbstractEnvironment):
 
         self.a = np.random.randn(num_resources, num_products) ** 2 + 0.1
         self.b = np.random.randn(num_resources) ** 2 + 0.1
-        self.poly = PolynomialFeatures(degree=context_dim, include_bias=False,
+        self.poly = PolynomialFeatures(degree=poly_deg, include_bias=False,
                                        interaction_only=True)
         self.poly_dim = self._calc_poly_dim(context_dim, poly_deg)
         # state = torch.random.get_rng_state()
@@ -27,17 +32,19 @@ class RandomResourceConstraintEnvironment(AbstractEnvironment):
         # self.w = -1.0 * (w_0.permute(0, 2, 1) @ w_0)
         # self.x_0 = torch.randn(self.context_dim)
         self.max_rel_noise = 0.25
-        self.target_mean_y = -1.0
-        self.offset = self._calc_offset()
+        self.target_mean_y = None
+        self.offset = 0
+        if self.target_mean_y is not None:
+            self._set_offset(self.target_mean_y)
 
     def _calc_poly_dim(self, context_dim, poly_deg):
-        k = min(context_dim, poly_deg)
-        return sum(math.comb(k, n) for n in range(1, k+1))
+        max_d = min(context_dim, poly_deg)
+        return sum(math.comb(context_dim, d) for d in range(1, max_d+1))
 
-    def _calc_offset(self, num_sample=100000):
+    def _set_offset(self, target_mean_y, num_sample=100000):
         x = torch.randn(num_sample, self.context_dim)
-        poly_x = torch.from_numpy(self.poly.fit_transform(x)).float()
-        return self.target_mean_y - float((poly_x @ self.w).mean())
+        mean_y = self.compute_oracle_mean_y(x)
+        self.offset = target_mean_y - float(mean_y.mean())
 
     def sample_data(self, n):
         """
@@ -75,4 +82,4 @@ class RandomResourceConstraintEnvironment(AbstractEnvironment):
 
     def compute_oracle_mean_y(self, x):
         poly_x = torch.from_numpy(self.poly.fit_transform(x)).float()
-        return poly_x @ self.w + self.offset
+        return -1.0 * softplus(poly_x @ self.w) + self.offset

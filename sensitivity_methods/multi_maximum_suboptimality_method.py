@@ -11,7 +11,7 @@ from sensitivity_methods.abstract_sensitivity_method import \
     AbstractSensitivityMethod
 
 
-class MaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
+class MultiMaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
     def __init__(self, lp_solver, context_dim, decision_dim, batch_size=1,
                  method="highs-ds"):
         AbstractSensitivityMethod.__init__(self, lp_solver, context_dim,
@@ -44,6 +44,14 @@ class MaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
             return np.concatenate([base, extra], axis=0)
 
     def _calc_sensitivity_internal(self, x, y_hat, epsilon):
+        w_d_list = []
+        for d in range(self.decision_dim):
+            w_d = self._calc_sensitivity_internal_single_dim(
+                x, y_hat, epsilon, d)
+            w_d_list.append(w_d)
+        return torch.cat(w_d_list, dim=1)
+
+    def _calc_sensitivity_internal_single_dim(self, x, y_hat, epsilon, d):
         a_eq = self.lp_solver.constraints["A_eq"]
         b_eq = self.lp_solver.constraints["b_eq"]
         a_ub = self.lp_solver.constraints["A_ub"]
@@ -75,7 +83,7 @@ class MaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
             c = np.concatenate([y_hat_batch.flatten(),
                                 -1.0 * epsilon * np.ones(k)], axis=0)
 
-            for s, j in product([-1, 1], range(m)):
+            for s in (-1, 1):
                 # setup up problem to solve using scipy
                 # need k additional variable columns
                 # need to add k additional rows to A
@@ -84,48 +92,32 @@ class MaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
                 a_eq_extra = np.zeros((k, k * m + k))
                 b_eq_extra = np.zeros(k)
                 for i in range(k):
-                    # encodes s * z_j[i] - eps[i] = s * z0_j[i] for each i
-                    # iff eps[i] = s * (z_j[i] - z0_j[i])
-                    a_eq_extra[i, i * m + j] = s
+                    # encodes s * z_d[i] - eps[i] = s * z0_d[i] for each i
+                    # iff eps[i] = s * (z_d[i] - z0_d[i])
+                    a_eq_extra[i, i * m + d] = s
                     a_eq_extra[i, k * m + i] = -1.0
-                    b_eq_extra[i] = s * z0_batch[i, j]
+                    b_eq_extra[i] = s * z0_batch[i, d]
 
                 a_eq_full = self._join_base_extra(a_eq_base, a_eq_extra)
                 b_eq_full = self._join_base_extra(b_eq_base, b_eq_extra)
 
-                a_ub_extra = np.zeros((2 * k * m, k * m + k))
-                b_ub_extra = np.zeros(2 * k * m)
-                for i, j_ in product(range(k), range(m)):
-                    if j_ == j:
-                        continue
-                    # encodes z_j[i] - eps[i] <= z0_j[i] for each i, j
-                    # iff eps[i] >= z_j[i] - z0_j[i]
-                    a_ub_extra[i * m + j_, i * m + j_] = 1.0
-                    a_ub_extra[i * m + j_, k * m + i] = -1.0
-                    b_ub_extra[i * m + j_] = 1.0 * z0_batch[i, j_]
-                    # encodes -z_j[i] - eps[i] <= -z0_j[i] for each i, j
-                    # iff eps[i] >= z0_j[i] - z_j[i]
-                    a_ub_extra[(k + i) * m + j_, i * m + j_] = -1.0
-                    a_ub_extra[(k + i) * m + j_, k * m + i] = -1.0
-                    b_ub_extra[(k + i) * m + j_] = -1.0 * z0_batch[i, j_]
-
-                a_ub_full = self._join_base_extra(a_ub_base, a_ub_extra)
-                b_ub_full = self._join_base_extra(b_ub_base, b_ub_extra)
-
                 try:
+                    # t0 = time.time()
                     result = linprog(c=c, A_eq=a_eq_full, b_eq=b_eq_full,
-                                     A_ub=a_ub_full, b_ub=b_ub_full,
+                                     A_ub=a_ub_base, b_ub=b_ub_base,
                                      method=self.method)
                     zh = result.x
                     z_s_batch = zh[:k*m].reshape(k, m)
                     h_batch = zh[k*m:]
-                    success = True
+                    success = False
+                    # t_main += (time.time() - t0)
                 except:
                     # t0 = time.time()
                     z = cp.Variable(len(c))
                     obj = c @ z
-                    constraints = [a_eq_full @ z == b_eq_full,
-                                   a_ub_full @ z <= b_ub_full, z >= 0]
+                    constraints = [a_eq_full @ z == b_eq_full, z >= 0]
+                    if a_ub_base is not None:
+                        constraints.append(a_ub_base @ z <= b_ub_base)
                     try:
                         prob = cp.Problem(cp.Minimize(obj), constraints)
                         prob.solve()
@@ -135,6 +127,12 @@ class MaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
                         success = True
                     except:
                         success = False
+                    # result = linprog(c=c, A_eq=a_eq_full, b_eq=b_eq_full,
+                    #                  A_ub=a_ub_full, b_ub=b_ub_full)
+                    # zh = result.x
+                    # z_s_batch = zh[:k*m].reshape(k, m)
+                    # h_batch = zh[k*m:]
+                    # t_backup += (time.time() - t0)
 
                 # re-construct optimal solutions
                 if success:

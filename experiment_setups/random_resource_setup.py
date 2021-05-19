@@ -1,8 +1,9 @@
 from benchmark_methods.predict_then_optimize import PredictThenOptimize
 from benchmark_methods.spo_plus import SPOPlus
+from end_to_end_methods.nonparametric_sw_method import \
+    NonparametricSWMethod
 from end_to_end_methods.iterative_sw_method import \
     IterativeSWMethod
-from end_to_end_methods.nonparametric_sw_method import NonparametricSWMethod
 from end_to_end_methods.weighting_methods import SingleEpsilonWeightingMethod, \
     ChiSquaredWeightingMethod
 from environments.random_resource_constraint_environment import \
@@ -25,7 +26,6 @@ from sensitivity_methods.variable_decision_method import \
     VariableDecisionSensitivityMethod
 from utils.hyperparameter_optimization import HyperparameterPlaceholder, \
     GlobalSetupVal
-
 
 method_list = [
     {
@@ -279,7 +279,6 @@ method_list = [
     },
 ]
 
-
 benchmark_list = [
     {
         "name": "PredictThenOptimizeLinear",
@@ -301,24 +300,24 @@ benchmark_list = [
         "name": "SPO+",
         "class": SPOPlus,
         "args": {
-            "lmbda": 0.1,
+            "lmbda": 0,
         }
     }
 ]
 
 # n_range = [10000, 5000, 2000, 1000, 500, 200, 100]
 # n_range = [1000, 100]
-n_range = [100]
-num_test = 1000
+n_range = [1000]
+num_test = 10000
 num_reps = 32
 num_procs = 1
-batch_size = 5
+batch_size = 20
 
 
-shortest_paths_setup = {
-    "setup_name": "shortest_paths_setup",
+random_resource_setup = {
+    "setup_name": "random_resource_setup",
     "environment": {
-        "class": ShortestPathEnvironment,
+        "class": RandomResourceConstraintEnvironment,
         "args": {}
     },
     "n_range": n_range,
