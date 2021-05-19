@@ -1,0 +1,2247 @@
+{
+  "aggregate_results": {
+    "00100___BEST-GLOBAL": {
+      "mean_relative_regret": 0.025949714576458838,
+      "std_relative_regret": 0.022409937498014978
+    },
+    "00100___BEST::FixedDecisionLinearNP": {
+      "mean_relative_regret": 0.025321652143603553,
+      "std_relative_regret": 0.020361705026766798
+    },
+    "00100___BEST::MultiVariableDecisionLinearNP": {
+      "mean_relative_regret": 0.18738137250879733,
+      "std_relative_regret": 0.08684176218744358
+    },
+    "00100___BEST::VariableDecisionLinearIter": {
+      "mean_relative_regret": 0.026503429866916013,
+      "std_relative_regret": 0.02234828334681605
+    },
+    "00100___BEST::VariableDecisionLinearNP": {
+      "mean_relative_regret": 0.026691445990725975,
+      "std_relative_regret": 0.02399000588465793
+    },
+    "00100___FixedDecisionLinearNP__p=1": {
+      "mean_relative_regret": 0.025749272426090465,
+      "std_relative_regret": 0.02052643416660425
+    },
+    "00100___FixedDecisionLinearNP__p=2": {
+      "mean_relative_regret": 0.025835421908264433,
+      "std_relative_regret": 0.021879111791951133
+    },
+    "00100___FixedDecisionLinearNP__p=inf": {
+      "mean_relative_regret": 0.026057308763231136,
+      "std_relative_regret": 0.020787435329219492
+    },
+    "00100___MultiVariableDecisionLinearNP__epsilon=0.001": {
+      "mean_relative_regret": 0.18738137250879733,
+      "std_relative_regret": 0.08684176218744358
+    },
+    "00100___PredictThenOptimizeFlexible": {
+      "mean_relative_regret": 0.026819061329099954,
+      "std_relative_regret": 0.021804479225988556
+    },
+    "00100___PredictThenOptimizeLinear": {
+      "mean_relative_regret": 0.02608667064229626,
+      "std_relative_regret": 0.020863326613632445
+    },
+    "00100___SPO+": {
+      "mean_relative_regret": 0.35275915591822493,
+      "std_relative_regret": 0.17477800614663058
+    },
+    "00100___VariableDecisionLinearIter__epsilon=0.001__num_iter=2": {
+      "mean_relative_regret": 0.026503429866916013,
+      "std_relative_regret": 0.02234828334681605
+    },
+    "00100___VariableDecisionLinearNP__epsilon=0.001": {
+      "mean_relative_regret": 0.026691445990725975,
+      "std_relative_regret": 0.02399000588465793
+    }
+  },
+  "results": [
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.8496963977813721,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.8496963977813721,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.6499474048614502,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.6499474048614502,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.5474250912666321,
+      "record_kind": "end-to-end",
+      "regret": 0.44467127323150635,
+      "relative_regret": 0.18984040124801296,
+      "rep": 0,
+      "time_taken": 2.473048686981201,
+      "train_pv": -0.5239197015762329
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.5474250912666321,
+      "record_kind": "end-to-end-best",
+      "regret": 0.44467127323150635,
+      "relative_regret": 0.18984040124801296,
+      "rep": 0,
+      "time_taken": 2.473048686981201,
+      "train_pv": -0.5239197015762329
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.5443964004516602,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.5038003921508789,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.5086331367492676,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.5443964004516602,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.8496963977813721,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "pv_estimate": -0.8970343470573425,
+      "record_kind": "benchmark",
+      "regret": 0.0950620174407959,
+      "relative_regret": 0.040584163225247986,
+      "rep": 0,
+      "time_taken": 0.3593881130218506,
+      "train_pv": -0.897148072719574
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "pv_estimate": -0.9046273827552795,
+      "record_kind": "benchmark",
+      "regret": 0.08746898174285889,
+      "relative_regret": 0.037342521521902816,
+      "rep": 0,
+      "time_taken": 0.4453566074371338,
+      "train_pv": -0.9003492593765259
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -0.9920963644981384,
+      "pv_estimate": 0.3581499457359314,
+      "record_kind": "benchmark",
+      "regret": 1.3502463102340698,
+      "relative_regret": 0.5764512275679043,
+      "rep": 0,
+      "time_taken": 1.6320436000823975,
+      "train_pv": 0.47641974687576294
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.0697414875030518,
+      "record_kind": "end-to-end",
+      "regret": 0.04132485389709473,
+      "relative_regret": 0.014059400559767397,
+      "rep": 1,
+      "time_taken": 0.8440978527069092,
+      "train_pv": -3.0230278968811035
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.0697414875030518,
+      "record_kind": "end-to-end-best",
+      "regret": 0.04132485389709473,
+      "relative_regret": 0.014059400559767397,
+      "rep": 1,
+      "time_taken": 0.8440978527069092,
+      "train_pv": -3.0230278968811035
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.0662288665771484,
+      "record_kind": "end-to-end",
+      "regret": 0.04483747482299805,
+      "relative_regret": 0.015254452446336022,
+      "rep": 1,
+      "time_taken": 0.8404965400695801,
+      "train_pv": -3.024505615234375
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.0662288665771484,
+      "record_kind": "end-to-end-best",
+      "regret": 0.04483747482299805,
+      "relative_regret": 0.015254452446336022,
+      "rep": 1,
+      "time_taken": 0.8404965400695801,
+      "train_pv": -3.024505615234375
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.5196013450622559,
+      "record_kind": "end-to-end",
+      "regret": 0.5914649963378906,
+      "relative_regret": 0.20122619964496422,
+      "rep": 1,
+      "time_taken": 2.6626925468444824,
+      "train_pv": -2.2431681156158447
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.5196013450622559,
+      "record_kind": "end-to-end-best",
+      "regret": 0.5914649963378906,
+      "relative_regret": 0.20122619964496422,
+      "rep": 1,
+      "time_taken": 2.6626925468444824,
+      "train_pv": -2.2431681156158447
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -2.0677602291107178,
+      "record_kind": "end-to-end",
+      "regret": 0.04330611228942871,
+      "relative_regret": 0.014733457518797144,
+      "rep": 1,
+      "time_taken": 0.5388438701629639,
+      "train_pv": -3.0230278968811035
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -2.068394184112549,
+      "record_kind": "end-to-end",
+      "regret": 0.042672157287597656,
+      "relative_regret": 0.014517775514698458,
+      "rep": 1,
+      "time_taken": 0.52256178855896,
+      "train_pv": -3.0230278968811035
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -2.067305564880371,
+      "record_kind": "end-to-end",
+      "regret": 0.04376077651977539,
+      "relative_regret": 0.01488814182937112,
+      "rep": 1,
+      "time_taken": 0.5073752403259277,
+      "train_pv": -3.024505615234375
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -2.067305564880371,
+      "record_kind": "end-to-end-best",
+      "regret": 0.04376077651977539,
+      "relative_regret": 0.01488814182937112,
+      "rep": 1,
+      "time_taken": 0.5073752403259277,
+      "train_pv": -3.024505615234375
+    },
+    {
+      "meta-method": "VariableDecisionLinearNP",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.0662288665771484,
+      "record_kind": "end-to-end-best",
+      "regret": 0.04483747482299805,
+      "relative_regret": 0.015254452446336022,
+      "rep": 1,
+      "time_taken": 0.8404965400695801,
+      "train_pv": -3.024505615234375
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "pv_estimate": -2.067305564880371,
+      "record_kind": "benchmark",
+      "regret": 0.04376077651977539,
+      "relative_regret": 0.01488814182937112,
+      "rep": 1,
+      "time_taken": 0.3934290409088135,
+      "train_pv": -3.024505615234375
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "pv_estimate": -2.0660054683685303,
+      "record_kind": "benchmark",
+      "regret": 0.04506087303161621,
+      "relative_regret": 0.015330456221379449,
+      "rep": 1,
+      "time_taken": 0.46788525581359863,
+      "train_pv": -3.026931047439575
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -2.1110663414001465,
+      "pv_estimate": -1.282828688621521,
+      "record_kind": "benchmark",
+      "regret": 0.8282376527786255,
+      "relative_regret": 0.281780183617658,
+      "rep": 1,
+      "time_taken": 1.5891728401184082,
+      "train_pv": -1.8458316326141357
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.733541965484619,
+      "record_kind": "end-to-end",
+      "regret": 0.023692846298217773,
+      "relative_regret": 0.007696581287022129,
+      "rep": 2,
+      "time_taken": 0.8040180206298828,
+      "train_pv": -2.602006196975708
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.733541965484619,
+      "record_kind": "end-to-end-best",
+      "regret": 0.023692846298217773,
+      "relative_regret": 0.007696581287022129,
+      "rep": 2,
+      "time_taken": 0.8040180206298828,
+      "train_pv": -2.602006196975708
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.733107805252075,
+      "record_kind": "end-to-end",
+      "regret": 0.02412700653076172,
+      "relative_regret": 0.00783761750864394,
+      "rep": 2,
+      "time_taken": 0.7563707828521729,
+      "train_pv": -2.600008964538574
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.733107805252075,
+      "record_kind": "end-to-end-best",
+      "regret": 0.02412700653076172,
+      "relative_regret": 0.00783761750864394,
+      "rep": 2,
+      "time_taken": 0.7563707828521729,
+      "train_pv": -2.600008964538574
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.4361095428466797,
+      "record_kind": "end-to-end",
+      "regret": 0.3211252689361572,
+      "relative_regret": 0.10431700373077982,
+      "rep": 2,
+      "time_taken": 3.260835886001587,
+      "train_pv": -2.299072265625
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.4361095428466797,
+      "record_kind": "end-to-end-best",
+      "regret": 0.3211252689361572,
+      "relative_regret": 0.10431700373077982,
+      "rep": 2,
+      "time_taken": 3.260835886001587,
+      "train_pv": -2.299072265625
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -2.7305264472961426,
+      "record_kind": "end-to-end",
+      "regret": 0.026708364486694336,
+      "relative_regret": 0.008676167300790742,
+      "rep": 2,
+      "time_taken": 0.516850471496582,
+      "train_pv": -2.5950632095336914
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -2.731837272644043,
+      "record_kind": "end-to-end",
+      "regret": 0.025397539138793945,
+      "relative_regret": 0.00825034789031479,
+      "rep": 2,
+      "time_taken": 0.5463037490844727,
+      "train_pv": -2.5950632095336914
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -2.7315781116485596,
+      "record_kind": "end-to-end",
+      "regret": 0.025656700134277344,
+      "relative_regret": 0.008334535903990192,
+      "rep": 2,
+      "time_taken": 0.514690637588501,
+      "train_pv": -2.5950632095336914
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -2.7305264472961426,
+      "record_kind": "end-to-end-best",
+      "regret": 0.026708364486694336,
+      "relative_regret": 0.008676167300790742,
+      "rep": 2,
+      "time_taken": 0.516850471496582,
+      "train_pv": -2.5950632095336914
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.733541965484619,
+      "record_kind": "end-to-end-best",
+      "regret": 0.023692846298217773,
+      "relative_regret": 0.007696581287022129,
+      "rep": 2,
+      "time_taken": 0.8040180206298828,
+      "train_pv": -2.602006196975708
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "pv_estimate": -2.7315781116485596,
+      "record_kind": "benchmark",
+      "regret": 0.025656700134277344,
+      "relative_regret": 0.008334535903990192,
+      "rep": 2,
+      "time_taken": 0.38313984870910645,
+      "train_pv": -2.5950632095336914
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "pv_estimate": -2.719816207885742,
+      "record_kind": "benchmark",
+      "regret": 0.03741860389709473,
+      "relative_regret": 0.012155370566960384,
+      "rep": 2,
+      "time_taken": 0.4548075199127197,
+      "train_pv": -2.587156295776367
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -2.757234811782837,
+      "pv_estimate": -2.4361095428466797,
+      "record_kind": "benchmark",
+      "regret": 0.3211252689361572,
+      "relative_regret": 0.10431700373077982,
+      "rep": 2,
+      "time_taken": 1.6370301246643066,
+      "train_pv": -2.299072265625
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.9515848159790039,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end-best",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.9515848159790039,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.7356052398681641,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end-best",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.7356052398681641,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.7594740390777588,
+      "record_kind": "end-to-end",
+      "regret": 0.5964161157608032,
+      "relative_regret": 0.22823407959154998,
+      "rep": 3,
+      "time_taken": 3.3487181663513184,
+      "train_pv": -0.8954269289970398
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.7594740390777588,
+      "record_kind": "end-to-end-best",
+      "regret": 0.5964161157608032,
+      "relative_regret": 0.22823407959154998,
+      "rep": 3,
+      "time_taken": 3.3487181663513184,
+      "train_pv": -0.8954269289970398
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.5170831680297852,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.5204410552978516,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.5553510189056396,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end-best",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.5170831680297852,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "end-to-end-best",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.9515848159790039,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "pv_estimate": -1.3178139925003052,
+      "record_kind": "benchmark",
+      "regret": 0.038076162338256836,
+      "relative_regret": 0.014570830056402742,
+      "rep": 3,
+      "time_taken": 0.37337756156921387,
+      "train_pv": -1.7219940423965454
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "pv_estimate": -1.3237524032592773,
+      "record_kind": "benchmark",
+      "regret": 0.03213775157928467,
+      "relative_regret": 0.012298343317707468,
+      "rep": 3,
+      "time_taken": 0.48914551734924316,
+      "train_pv": -1.7275563478469849
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -1.355890154838562,
+      "pv_estimate": -0.4623315930366516,
+      "record_kind": "benchmark",
+      "regret": 0.8935585618019104,
+      "relative_regret": 0.34194333540745553,
+      "rep": 3,
+      "time_taken": 1.6378436088562012,
+      "train_pv": -0.35985296964645386
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.3217335939407349,
+      "record_kind": "end-to-end",
+      "regret": 0.20580172538757324,
+      "relative_regret": 0.0855383975687611,
+      "rep": 4,
+      "time_taken": 0.8049764633178711,
+      "train_pv": -1.0446618795394897
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.3217335939407349,
+      "record_kind": "end-to-end-best",
+      "regret": 0.20580172538757324,
+      "relative_regret": 0.0855383975687611,
+      "rep": 4,
+      "time_taken": 0.8049764633178711,
+      "train_pv": -1.0446618795394897
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.307878851890564,
+      "record_kind": "end-to-end",
+      "regret": 0.21965646743774414,
+      "relative_regret": 0.0912969131082606,
+      "rep": 4,
+      "time_taken": 0.7477631568908691,
+      "train_pv": -1.012448787689209
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.307878851890564,
+      "record_kind": "end-to-end-best",
+      "regret": 0.21965646743774414,
+      "relative_regret": 0.0912969131082606,
+      "rep": 4,
+      "time_taken": 0.7477631568908691,
+      "train_pv": -1.012448787689209
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.1525381803512573,
+      "record_kind": "end-to-end",
+      "regret": 0.3749971389770508,
+      "relative_regret": 0.15586193118915312,
+      "rep": 4,
+      "time_taken": 3.5063564777374268,
+      "train_pv": -0.8886349201202393
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.1525381803512573,
+      "record_kind": "end-to-end-best",
+      "regret": 0.3749971389770508,
+      "relative_regret": 0.15586193118915312,
+      "rep": 4,
+      "time_taken": 3.5063564777374268,
+      "train_pv": -0.8886349201202393
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.3401689529418945,
+      "record_kind": "end-to-end",
+      "regret": 0.18736636638641357,
+      "relative_regret": 0.07787601735987655,
+      "rep": 4,
+      "time_taken": 0.5029702186584473,
+      "train_pv": -1.0446618795394897
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -1.3265501260757446,
+      "record_kind": "end-to-end",
+      "regret": 0.20098519325256348,
+      "relative_regret": 0.08353647829480318,
+      "rep": 4,
+      "time_taken": 0.510023832321167,
+      "train_pv": -1.043381690979004
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -1.3356547355651855,
+      "record_kind": "end-to-end",
+      "regret": 0.19188058376312256,
+      "relative_regret": 0.07975228404303264,
+      "rep": 4,
+      "time_taken": 0.5280625820159912,
+      "train_pv": -1.043381690979004
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.3401689529418945,
+      "record_kind": "end-to-end-best",
+      "regret": 0.18736636638641357,
+      "relative_regret": 0.07787601735987655,
+      "rep": 4,
+      "time_taken": 0.5029702186584473,
+      "train_pv": -1.0446618795394897
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.3217335939407349,
+      "record_kind": "end-to-end-best",
+      "regret": 0.20580172538757324,
+      "relative_regret": 0.0855383975687611,
+      "rep": 4,
+      "time_taken": 0.8049764633178711,
+      "train_pv": -1.0446618795394897
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "pv_estimate": -1.3349483013153076,
+      "record_kind": "benchmark",
+      "regret": 0.1925870180130005,
+      "relative_regret": 0.08004590283368393,
+      "rep": 4,
+      "time_taken": 0.4034290313720703,
+      "train_pv": -1.043381690979004
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "pv_estimate": -1.3216239213943481,
+      "record_kind": "benchmark",
+      "regret": 0.20591139793395996,
+      "relative_regret": 0.08558398131621286,
+      "rep": 4,
+      "time_taken": 0.45082712173461914,
+      "train_pv": -1.0263161659240723
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -1.527535319328308,
+      "pv_estimate": -0.6491134762763977,
+      "record_kind": "benchmark",
+      "regret": 0.8784218430519104,
+      "relative_regret": 0.36510285179851665,
+      "rep": 4,
+      "time_taken": 1.5286509990692139,
+      "train_pv": -0.5537789463996887
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 1.022092342376709,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end-best",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 1.022092342376709,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.7958962917327881,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end-best",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.7958962917327881,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.7421205043792725,
+      "record_kind": "end-to-end",
+      "regret": 0.5665044784545898,
+      "relative_regret": 0.1525390590957795,
+      "rep": 5,
+      "time_taken": 3.562764883041382,
+      "train_pv": -1.8461703062057495
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.7421205043792725,
+      "record_kind": "end-to-end-best",
+      "regret": 0.5665044784545898,
+      "relative_regret": 0.1525390590957795,
+      "rep": 5,
+      "time_taken": 3.562764883041382,
+      "train_pv": -1.8461703062057495
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.48972153663635254,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.5409085750579834,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.5056805610656738,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end-best",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.48972153663635254,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "end-to-end-best",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 1.022092342376709,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "benchmark",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.3837556838989258,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "pv_estimate": -2.295935869216919,
+      "record_kind": "benchmark",
+      "regret": 0.01268911361694336,
+      "relative_regret": 0.003416716946648352,
+      "rep": 5,
+      "time_taken": 0.47692084312438965,
+      "train_pv": -2.523836612701416
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -2.3086249828338623,
+      "pv_estimate": -0.903417706489563,
+      "record_kind": "benchmark",
+      "regret": 1.4052072763442993,
+      "relative_regret": 0.37837122903748466,
+      "rep": 5,
+      "time_taken": 1.6119608879089355,
+      "train_pv": -0.9618034958839417
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -0.9077154397964478,
+      "record_kind": "end-to-end",
+      "regret": 0.0943756103515625,
+      "relative_regret": 0.03154080715430669,
+      "rep": 6,
+      "time_taken": 0.9988923072814941,
+      "train_pv": -0.8565070629119873
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -0.9077154397964478,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0943756103515625,
+      "relative_regret": 0.03154080715430669,
+      "rep": 6,
+      "time_taken": 0.9988923072814941,
+      "train_pv": -0.8565070629119873
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.9046265482902527,
+      "record_kind": "end-to-end",
+      "regret": 0.09746450185775757,
+      "relative_regret": 0.03257313034622617,
+      "rep": 6,
+      "time_taken": 0.7572166919708252,
+      "train_pv": -0.8351598978042603
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.9046265482902527,
+      "record_kind": "end-to-end-best",
+      "regret": 0.09746450185775757,
+      "relative_regret": 0.03257313034622617,
+      "rep": 6,
+      "time_taken": 0.7572166919708252,
+      "train_pv": -0.8351598978042603
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": 0.12814071774482727,
+      "record_kind": "end-to-end",
+      "regret": 1.1302317678928375,
+      "relative_regret": 0.37772918339795303,
+      "rep": 6,
+      "time_taken": 3.3401999473571777,
+      "train_pv": -0.13097916543483734
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": 0.12814071774482727,
+      "record_kind": "end-to-end-best",
+      "regret": 1.1302317678928375,
+      "relative_regret": 0.37772918339795303,
+      "rep": 6,
+      "time_taken": 3.3401999473571777,
+      "train_pv": -0.13097916543483734
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -0.894070029258728,
+      "record_kind": "end-to-end",
+      "regret": 0.10802102088928223,
+      "relative_regret": 0.036101172493490284,
+      "rep": 6,
+      "time_taken": 0.4937708377838135,
+      "train_pv": -0.8280542492866516
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -0.9054160118103027,
+      "record_kind": "end-to-end",
+      "regret": 0.09667503833770752,
+      "relative_regret": 0.03230928763783466,
+      "rep": 6,
+      "time_taken": 0.4935626983642578,
+      "train_pv": -0.8565070629119873
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -0.9042004346847534,
+      "record_kind": "end-to-end",
+      "regret": 0.09789061546325684,
+      "relative_regret": 0.03271553967218246,
+      "rep": 6,
+      "time_taken": 0.5281941890716553,
+      "train_pv": -0.85157310962677
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -0.9054160118103027,
+      "record_kind": "end-to-end-best",
+      "regret": 0.09667503833770752,
+      "relative_regret": 0.03230928763783466,
+      "rep": 6,
+      "time_taken": 0.4935626983642578,
+      "train_pv": -0.8565070629119873
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -0.9077154397964478,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0943756103515625,
+      "relative_regret": 0.03154080715430669,
+      "rep": 6,
+      "time_taken": 0.9988923072814941,
+      "train_pv": -0.8565070629119873
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "pv_estimate": -0.9042004346847534,
+      "record_kind": "benchmark",
+      "regret": 0.09789061546325684,
+      "relative_regret": 0.03271553967218246,
+      "rep": 6,
+      "time_taken": 0.37119030952453613,
+      "train_pv": -0.85157310962677
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "pv_estimate": -0.9244548082351685,
+      "record_kind": "benchmark",
+      "regret": 0.0776362419128418,
+      "relative_regret": 0.02594642540838947,
+      "rep": 6,
+      "time_taken": 0.4631826877593994,
+      "train_pv": -0.87769615650177
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -1.0020910501480103,
+      "pv_estimate": 0.9879928827285767,
+      "record_kind": "benchmark",
+      "regret": 1.990083932876587,
+      "relative_regret": 0.6650961335658842,
+      "rep": 6,
+      "time_taken": 1.59132981300354,
+      "train_pv": 0.7836147546768188
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.9748220443725586,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end-best",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.9748220443725586,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.774956226348877,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end-best",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.774956226348877,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.5295830965042114,
+      "record_kind": "end-to-end",
+      "regret": 0.7996550798416138,
+      "relative_regret": 0.28373181664391695,
+      "rep": 7,
+      "time_taken": 3.3211398124694824,
+      "train_pv": -0.677909255027771
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -0.5295830965042114,
+      "record_kind": "end-to-end-best",
+      "regret": 0.7996550798416138,
+      "relative_regret": 0.28373181664391695,
+      "rep": 7,
+      "time_taken": 3.3211398124694824,
+      "train_pv": -0.677909255027771
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.5191919803619385,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.5011639595031738,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.5101826190948486,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end-best",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.5191919803619385,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "meta-method": "VariableDecisionLinearIter",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "end-to-end-best",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.9748220443725586,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "pv_estimate": -1.2669048309326172,
+      "record_kind": "benchmark",
+      "regret": 0.06233334541320801,
+      "relative_regret": 0.022116977403664213,
+      "rep": 7,
+      "time_taken": 0.37754225730895996,
+      "train_pv": -1.8709408044815063
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "pv_estimate": -1.2770049571990967,
+      "record_kind": "benchmark",
+      "regret": 0.052233219146728516,
+      "relative_regret": 0.018533273321538233,
+      "rep": 7,
+      "time_taken": 0.48671913146972656,
+      "train_pv": -1.885751485824585
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -1.3292381763458252,
+      "pv_estimate": 0.04552211984992027,
+      "record_kind": "benchmark",
+      "regret": 1.3747602961957455,
+      "relative_regret": 0.4877893558392792,
+      "rep": 7,
+      "time_taken": 1.6939969062805176,
+      "train_pv": 0.10836620628833771
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.9066451787948608,
+      "record_kind": "end-to-end",
+      "regret": 0.04136204719543457,
+      "relative_regret": 0.017539172288259432,
+      "rep": 8,
+      "time_taken": 0.8585414886474609,
+      "train_pv": -2.6887054443359375
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -1.9066451787948608,
+      "record_kind": "end-to-end-best",
+      "regret": 0.04136204719543457,
+      "relative_regret": 0.017539172288259432,
+      "rep": 8,
+      "time_taken": 0.8585414886474609,
+      "train_pv": -2.6887054443359375
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.9144359827041626,
+      "record_kind": "end-to-end",
+      "regret": 0.03357124328613281,
+      "relative_regret": 0.014235557953513181,
+      "rep": 8,
+      "time_taken": 0.776545524597168,
+      "train_pv": -2.694082260131836
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.9144359827041626,
+      "record_kind": "end-to-end-best",
+      "regret": 0.03357124328613281,
+      "relative_regret": 0.014235557953513181,
+      "rep": 8,
+      "time_taken": 0.776545524597168,
+      "train_pv": -2.694082260131836
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.727176308631897,
+      "record_kind": "end-to-end",
+      "regret": 0.22083091735839844,
+      "relative_regret": 0.09364119449461977,
+      "rep": 8,
+      "time_taken": 3.7280547618865967,
+      "train_pv": -2.4866504669189453
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -1.727176308631897,
+      "record_kind": "end-to-end-best",
+      "regret": 0.22083091735839844,
+      "relative_regret": 0.09364119449461977,
+      "rep": 8,
+      "time_taken": 3.7280547618865967,
+      "train_pv": -2.4866504669189453
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.9128633737564087,
+      "record_kind": "end-to-end",
+      "regret": 0.03514385223388672,
+      "relative_regret": 0.0149024074241496,
+      "rep": 8,
+      "time_taken": 0.5077149868011475,
+      "train_pv": -2.695070505142212
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -1.9122185707092285,
+      "record_kind": "end-to-end",
+      "regret": 0.035788655281066895,
+      "relative_regret": 0.015175829860980436,
+      "rep": 8,
+      "time_taken": 0.5106072425842285,
+      "train_pv": -2.695070505142212
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -1.9079660177230835,
+      "record_kind": "end-to-end",
+      "regret": 0.040041208267211914,
+      "relative_regret": 0.016979083436330117,
+      "rep": 8,
+      "time_taken": 0.48435163497924805,
+      "train_pv": -2.6911725997924805
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.9128633737564087,
+      "record_kind": "end-to-end-best",
+      "regret": 0.03514385223388672,
+      "relative_regret": 0.0149024074241496,
+      "rep": 8,
+      "time_taken": 0.5077149868011475,
+      "train_pv": -2.695070505142212
+    },
+    {
+      "meta-method": "FixedDecisionLinearNP",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -1.9128633737564087,
+      "record_kind": "end-to-end-best",
+      "regret": 0.03514385223388672,
+      "relative_regret": 0.0149024074241496,
+      "rep": 8,
+      "time_taken": 0.5077149868011475,
+      "train_pv": -2.695070505142212
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "pv_estimate": -1.9079660177230835,
+      "record_kind": "benchmark",
+      "regret": 0.040041208267211914,
+      "relative_regret": 0.016979083436330117,
+      "rep": 8,
+      "time_taken": 0.3752579689025879,
+      "train_pv": -2.6911725997924805
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "pv_estimate": -1.8755228519439697,
+      "record_kind": "benchmark",
+      "regret": 0.07248437404632568,
+      "relative_regret": 0.03073629113661161,
+      "rep": 8,
+      "time_taken": 0.480849027633667,
+      "train_pv": -2.6494300365448
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -1.9480072259902954,
+      "pv_estimate": -1.5377476215362549,
+      "record_kind": "benchmark",
+      "regret": 0.4102596044540405,
+      "relative_regret": 0.1739665798318323,
+      "rep": 8,
+      "time_taken": 1.6859254837036133,
+      "train_pv": -2.190208911895752
+    },
+    {
+      "method": "VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.7360775470733643,
+      "record_kind": "end-to-end",
+      "regret": 0.09341597557067871,
+      "relative_regret": 0.02797125217908005,
+      "rep": 9,
+      "time_taken": 0.9018378257751465,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "BEST::VariableDecisionLinearIter",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "epsilon": 0.001,
+        "num_iter": 2
+      },
+      "pv_estimate": -2.7360775470733643,
+      "record_kind": "end-to-end-best",
+      "regret": 0.09341597557067871,
+      "relative_regret": 0.02797125217908005,
+      "rep": 9,
+      "time_taken": 0.9018378257751465,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.7459068298339844,
+      "record_kind": "end-to-end",
+      "regret": 0.0835866928100586,
+      "relative_regret": 0.02502810091231657,
+      "rep": 9,
+      "time_taken": 0.7702891826629639,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "BEST::VariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.7459068298339844,
+      "record_kind": "end-to-end-best",
+      "regret": 0.0835866928100586,
+      "relative_regret": 0.02502810091231657,
+      "rep": 9,
+      "time_taken": 0.7702891826629639,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.539964199066162,
+      "record_kind": "end-to-end",
+      "regret": 0.28952932357788086,
+      "relative_regret": 0.08669285605124397,
+      "rep": 9,
+      "time_taken": 3.624241828918457,
+      "train_pv": -2.69400691986084
+    },
+    {
+      "method": "BEST::MultiVariableDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "epsilon": 0.001
+      },
+      "pv_estimate": -2.539964199066162,
+      "record_kind": "end-to-end-best",
+      "regret": 0.28952932357788086,
+      "relative_regret": 0.08669285605124397,
+      "rep": 9,
+      "time_taken": 3.624241828918457,
+      "train_pv": -2.69400691986084
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "p": 1
+      },
+      "pv_estimate": -2.7476210594177246,
+      "record_kind": "end-to-end",
+      "regret": 0.08187246322631836,
+      "relative_regret": 0.024514814531837043,
+      "rep": 9,
+      "time_taken": 0.499100923538208,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -2.7497551441192627,
+      "record_kind": "end-to-end",
+      "regret": 0.07973837852478027,
+      "relative_regret": 0.023875812252049527,
+      "rep": 9,
+      "time_taken": 0.5042996406555176,
+      "train_pv": -3.0028514862060547
+    },
+    {
+      "method": "FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "p": Infinity
+      },
+      "pv_estimate": -2.7386038303375244,
+      "record_kind": "end-to-end",
+      "regret": 0.09088969230651855,
+      "relative_regret": 0.027214815115441517,
+      "rep": 9,
+      "time_taken": 0.5428669452667236,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "BEST::FixedDecisionLinearNP",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -2.7497551441192627,
+      "record_kind": "end-to-end-best",
+      "regret": 0.07973837852478027,
+      "relative_regret": 0.023875812252049527,
+      "rep": 9,
+      "time_taken": 0.5042996406555176,
+      "train_pv": -3.0028514862060547
+    },
+    {
+      "meta-method": "FixedDecisionLinearNP",
+      "method": "BEST-GLOBAL",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "placeholders": {
+        "p": 2
+      },
+      "pv_estimate": -2.7497551441192627,
+      "record_kind": "end-to-end-best",
+      "regret": 0.07973837852478027,
+      "relative_regret": 0.023875812252049527,
+      "rep": 9,
+      "time_taken": 0.5042996406555176,
+      "train_pv": -3.0028514862060547
+    },
+    {
+      "method": "PredictThenOptimizeLinear",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "pv_estimate": -2.7386038303375244,
+      "record_kind": "benchmark",
+      "regret": 0.09088969230651855,
+      "relative_regret": 0.027214815115441517,
+      "rep": 9,
+      "time_taken": 0.37907934188842773,
+      "train_pv": -2.990579843521118
+    },
+    {
+      "method": "PredictThenOptimizeFlexible",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "pv_estimate": -2.7398314476013184,
+      "record_kind": "benchmark",
+      "regret": 0.08966207504272461,
+      "relative_regret": 0.026847233533648877,
+      "rep": 9,
+      "time_taken": 0.4791755676269531,
+      "train_pv": -3.001589775085449
+    },
+    {
+      "method": "SPO+",
+      "n": 100,
+      "oracle_pv": -2.829493522644043,
+      "pv_estimate": -2.3192732334136963,
+      "record_kind": "benchmark",
+      "regret": 0.5102202892303467,
+      "relative_regret": 0.15277365878545413,
+      "rep": 9,
+      "time_taken": 1.7017149925231934,
+      "train_pv": -2.566133975982666
+    }
+  ],
+  "setup": {
+    "batch_size": 10,
+    "benchmark_methods": [
+      {
+        "args": {
+          "predict_args": {},
+          "predict_class": "LinearPredictMethod"
+        },
+        "class": "PredictThenOptimize",
+        "name": "PredictThenOptimizeLinear"
+      },
+      {
+        "args": {
+          "predict_args": {},
+          "predict_class": "FlexiblePredictMethod"
+        },
+        "class": "PredictThenOptimize",
+        "name": "PredictThenOptimizeFlexible"
+      },
+      {
+        "args": {
+          "lmbda": 0
+        },
+        "class": "SPOPlus",
+        "name": "SPO+"
+      }
+    ],
+    "environment": {
+      "args": {},
+      "class": "WeWinEnvironment"
+    },
+    "methods": [
+      {
+        "args": {
+          "num_iter": "HyperparameterPlaceholder(num_iter)",
+          "predict_args": {},
+          "predict_class": "LinearPredictMethod",
+          "sensitivity_args": {
+            "batch_size": "GlobalValue(batch_size)"
+          },
+          "sensitivity_class": "VariableDecisionSensitivityMethod",
+          "weighting_args": {
+            "epsilon": "HyperparameterPlaceholder(epsilon)"
+          },
+          "weighting_class": "SingleEpsilonWeightingMethod"
+        },
+        "class": "IterativeSWMethod",
+        "name": "VariableDecisionLinearIter",
+        "placeholder_options": {
+          "epsilon": [
+            0.001
+          ],
+          "num_iter": [
+            2
+          ]
+        }
+      },
+      {
+        "args": {
+          "flexible_predict_args": {},
+          "flexible_predict_class": "FlexiblePredictMethod",
+          "predict_args": {},
+          "predict_class": "LinearPredictMethod",
+          "sensitivity_args": {
+            "batch_size": "GlobalValue(batch_size)"
+          },
+          "sensitivity_class": "VariableDecisionSensitivityMethod",
+          "weighting_args": {
+            "epsilon": "HyperparameterPlaceholder(epsilon)"
+          },
+          "weighting_class": "SingleEpsilonWeightingMethod"
+        },
+        "class": "NonparametricSWMethod",
+        "name": "VariableDecisionLinearNP",
+        "placeholder_options": {
+          "epsilon": [
+            0.001
+          ]
+        }
+      },
+      {
+        "args": {
+          "flexible_predict_args": {},
+          "flexible_predict_class": "FlexiblePredictMethod",
+          "predict_args": {},
+          "predict_class": "LinearPredictMethod",
+          "sensitivity_args": {
+            "batch_size": "GlobalValue(batch_size)"
+          },
+          "sensitivity_class": "MultiVariableDecisionSensitivityMethod",
+          "weighting_args": {
+            "epsilon": "HyperparameterPlaceholder(epsilon)"
+          },
+          "weighting_class": "SingleEpsilonWeightingMethod"
+        },
+        "class": "NonparametricSWMethod",
+        "name": "MultiVariableDecisionLinearNP",
+        "placeholder_options": {
+          "epsilon": [
+            0.001
+          ]
+        }
+      },
+      {
+        "args": {
+          "flexible_predict_args": {},
+          "flexible_predict_class": "FlexiblePredictMethod",
+          "predict_args": {},
+          "predict_class": "LinearPredictMethod",
+          "sensitivity_args": {
+            "p": "HyperparameterPlaceholder(p)"
+          },
+          "sensitivity_class": "FixedDecisionSensitivityMethod",
+          "weighting_args": {
+            "epsilon": 0.001
+          },
+          "weighting_class": "SingleEpsilonWeightingMethod"
+        },
+        "class": "NonparametricSWMethod",
+        "name": "FixedDecisionLinearNP",
+        "placeholder_options": {
+          "p": [
+            1,
+            2,
+            Infinity
+          ]
+        }
+      }
+    ],
+    "n_range": [
+      100
+    ],
+    "num_procs": 1,
+    "num_reps": 10,
+    "num_test": 1000,
+    "setup_name": "we_win_setup",
+    "verbose": true
+  }
+}
