@@ -23,7 +23,7 @@ class WeWinEnvironment(AbstractEnvironment):
         """
         x = torch.randn(n, self.context_dim) + self.x_mean
         #print(torch.sum(torch.diag((torch.norm(x - self.x_mean, p=2, dim=1) < self.context_dim/4)).float()))
-        y = torch.diag((torch.norm(x - self.x_mean, p=2, dim=1) < self.context_dim/3)).float() @ (x @ self.w)  
+        y = torch.diag((torch.norm(x - self.x_mean, p=2, dim=1) < self.context_dim/3).float()).float() @ (x @ self.w)  
         return x, y
 
     def get_constraints(self):
@@ -45,4 +45,4 @@ class WeWinEnvironment(AbstractEnvironment):
         return self.decision_dim
 
     def compute_oracle_mean_y(self, x):
-      return x @ self.w
+        return x @ self.w
