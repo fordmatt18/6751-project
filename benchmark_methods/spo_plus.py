@@ -3,6 +3,7 @@ from itertools import product
 import numpy as np
 import torch
 from scipy.optimize import linprog
+import cvxpy as cp
 
 from benchmark_methods.abstract_benchmark import AbstractBenchmark
 
@@ -90,9 +91,14 @@ class SPOPlus(AbstractBenchmark):
                               method=self.method)
             w = results.x[:m*p].reshape(m, p)
         except:
-            results = linprog(c=c, A_eq=a_main, b_eq=b_main,
-                              A_ub=a_reg, b_ub=b_reg, bounds=bounds)
-            w = results.x[:m*p].reshape(m, p)
+            z_var = cp.Variable(len(c))
+            obj = c @ z_var
+            constraints = [a_main @ z_var == b_main,
+                           a_reg @ z_var <= b_reg,
+                           z_var[m*p:] >= 0]
+            prob = cp.Problem(cp.Minimize(obj), constraints)
+            prob.solve()
+            w = z_var.value[:m*p].reshape(m, p)
 
         self.w = torch.from_numpy(w).float()
 

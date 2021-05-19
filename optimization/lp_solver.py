@@ -1,5 +1,6 @@
 import scipy.linalg
 from scipy.optimize import linprog
+import cvxpy as cp
 import numpy as np
 import torch
 
@@ -79,9 +80,20 @@ class LPSolver(object):
                                  method=self.method)
                 solutions_list.append(result.x.reshape(k, m))
             except:
-                result = linprog(c=y_cat, A_eq=a_eq_cat, b_eq=b_eq_cat,
-                                 A_ub=a_ub_cat, b_ub=b_ub_cat)
-                solutions_list.append(result.x.reshape(k, m))
+                # result = linprog(c=y_cat, A_eq=a_eq_cat, b_eq=b_eq_cat,
+                #                  A_ub=a_ub_cat, b_ub=b_ub_cat)
+                # solutions_list.append(result.x.reshape(k, m))
+                z_var = cp.Variable(len(y_cat))
+                obj = y_cat @ z_var
+                constraints = [z_var >= 0]
+                if a_eq_cat is not None:
+                    constraints.append(a_eq_cat @ z_var == b_eq_cat)
+                if a_ub_cat is not None:
+                    constraints.append(a_ub_cat @ z_var == b_ub_cat)
+                prob = cp.Problem(cp.Minimize(obj), constraints)
+                prob.solve()
+                solutions_list.append(z_var.value.reshape(k, m))
+
 
         z = np.concatenate(solutions_list, axis=0)
         return torch.from_numpy(z).float()

@@ -180,21 +180,23 @@ def do_job(setup, n, rep_i):
                 best_performance_all = train_pv
 
         # save best hyperparameter setup for this method
-        best_row["record_kind"] = "end-to-end-best"
-        best_row["method"] = "BEST::" + best_row["method"]
-        results.append(best_row)
-        if verbose:
-            print(json.dumps(best_row, sort_keys=True, indent=2))
-            print("")
+        if best_row is not None:
+            best_row["record_kind"] = "end-to-end-best"
+            best_row["method"] = "BEST::" + best_row["method"]
+            results.append(best_row)
+            if verbose:
+                print(json.dumps(best_row, sort_keys=True, indent=2))
+                print("")
 
     # save best hyperparameter setup for best of all methods
-    best_row_all["record_kind"] = "end-to-end-best"
-    best_row_all["meta-method"] = best_row_all["method"]
-    best_row_all["method"] = "BEST-GLOBAL"
-    results.append(best_row_all)
-    if verbose:
-        print(json.dumps(best_row_all, sort_keys=True, indent=2))
-        print("")
+    if best_row_all is not None:
+        best_row_all["record_kind"] = "end-to-end-best"
+        best_row_all["meta-method"] = best_row_all["method"]
+        best_row_all["method"] = "BEST-GLOBAL"
+        results.append(best_row_all)
+        if verbose:
+            print(json.dumps(best_row_all, sort_keys=True, indent=2))
+            print("")
 
     # iterate over benchmark methods
     if verbose:

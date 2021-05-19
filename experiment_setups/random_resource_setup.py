@@ -27,6 +27,7 @@ from sensitivity_methods.variable_decision_method import \
 from utils.hyperparameter_optimization import HyperparameterPlaceholder, \
     GlobalSetupVal
 
+
 method_list = [
     {
         "name": "VariableDecisionLinearIter",

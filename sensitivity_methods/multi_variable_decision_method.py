@@ -84,9 +84,12 @@ class MultiVariableDecisionSensitivityMethod(AbstractSensitivityMethod):
                                  bounds=(None, None), method=self.method)
                 upper_sol = result.x.reshape(k, -1)
             except:
-                result = linprog(c=c, A_ub=a_dual, b_ub=b_dual_upper,
-                                 bounds=(None, None))
-                upper_sol = result.x.reshape(k, -1)
+                z_var = cp.Variable(len(c))
+                obj = c @ z_var
+                constraints = [a_dual @ z_var <= b_dual_upper]
+                prob = cp.Problem(cp.Minimize(obj), constraints)
+                prob.solve()
+                upper_sol = z_var.value.reshape(k, -1)
             upper_bound = (upper_sol * (-1.0 * c).reshape(k, -1)).sum(1)
 
             # computer lower bounds
@@ -95,9 +98,12 @@ class MultiVariableDecisionSensitivityMethod(AbstractSensitivityMethod):
                                  bounds=(None, None), method=self.method)
                 lower_sol = result.x.reshape(k, -1)
             except:
-                result = linprog(c=c, A_ub=a_dual, b_ub=b_dual_lower,
-                                 bounds=(None, None))
-                lower_sol = result.x.reshape(k, -1)
+                z_var = cp.Variable(len(c))
+                obj = c @ z_var
+                constraints = [a_dual @ z_var <= b_dual_lower]
+                prob = cp.Problem(cp.Minimize(obj), constraints)
+                prob.solve()
+                lower_sol = z_var.value.reshape(k, -1)
             lower_bound = (lower_sol * (-1.0 * c).reshape(k, -1)).sum(1)
 
             sensitivity_array[idx] = upper_bound - lower_bound

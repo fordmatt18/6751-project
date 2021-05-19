@@ -109,7 +109,7 @@ class MultiMaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
                     zh = result.x
                     z_s_batch = zh[:k*m].reshape(k, m)
                     h_batch = zh[k*m:]
-                    success = False
+                    success = True
                     # t_main += (time.time() - t0)
                 except:
                     # t0 = time.time()
