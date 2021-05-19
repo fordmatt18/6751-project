@@ -15,8 +15,9 @@ from optimization.lp_solver import LPSolver
 
 # setup_list = [shortest_paths_setup]
 # save_dir = "results_shortest_paths"
-setup_list = [random_resource_setup, shortest_paths_setup]
-save_dir = "results_pilot"
+# setup_list = [random_resource_setup, shortest_paths_setup]
+setup_list = [random_resource_setup]
+save_dir = "results_random_resource"
 
 
 def main():

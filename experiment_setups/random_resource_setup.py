@@ -1,4 +1,5 @@
 from benchmark_methods.predict_then_optimize import PredictThenOptimize
+from benchmark_methods.random_weights import RandomWeights
 from benchmark_methods.spo_plus import SPOPlus
 from end_to_end_methods.nonparametric_sw_method import \
     NonparametricSWMethod
@@ -303,15 +304,35 @@ benchmark_list = [
         "args": {
             "lmbda": 0,
         }
-    }
+    },
+    {
+        "name": "RandomWeights",
+        "class": RandomWeights,
+        "args": {
+            "num_weights": 1000,
+            "multi": False,
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
+    {
+        "name": "RandomWeightsMulti",
+        "class": RandomWeights,
+        "args": {
+            "num_weights": 1000,
+            "multi": True,
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
 ]
 
 # n_range = [10000, 5000, 2000, 1000, 500, 200, 100]
 # n_range = [1000, 100]
-n_range = [1000]
+n_range = [1000, 500, 200, 100, 50]
 num_test = 10000
 num_reps = 32
-num_procs = 1
+num_procs = 8
 batch_size = 20
 
 
