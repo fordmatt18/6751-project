@@ -11,7 +11,7 @@ class WeWinEnvironment(AbstractEnvironment):
         self.num_constraints = num_constraints
         self.a = np.vstack((np.eye(self.decision_dim), -np.eye(self.decision_dim)))
         self.b = np.ones(2*self.decision_dim)
-        self.w =  1 * torch.randn(self.context_dim, self.decision_dim)
+        self.w = 1 * torch.randn(self.context_dim, self.decision_dim)
         self.x_mean = torch.ones(context_dim)
 
     def sample_data(self, n):
@@ -23,7 +23,8 @@ class WeWinEnvironment(AbstractEnvironment):
         """
         x = torch.randn(n, self.context_dim) + self.x_mean
         #print(torch.sum(torch.diag((torch.norm(x - self.x_mean, p=2, dim=1) < self.context_dim/4)).float()))
-        y = torch.diag((torch.norm(x - self.x_mean, p=2, dim=1) < self.context_dim/3)).float() @ (x @ self.w)  
+        # y = torch.diag((torch.norm(x - self.x_mean, p=2, dim=1) < self.context_dim/3)).float() @ (x @ self.w)
+        y = (torch.norm(x - self.x_mean, p=2, dim=1, keepdim=True) * x) @ self.w
         return x, y
 
     def get_constraints(self):
