@@ -25,7 +25,7 @@ computational performance but shouldn't change
 results (e.g. number of parallel processes used) can be modified by editing
 the experiment setup files, which for our main experiments are:
 - experiment_setups/random_resource_setup.py 
-- experiment_setups/shortest_paths.setup.py.
+- experiment_setups/shortest_paths.setup.py
 
 After running experiments, plots as in the paper can be created by executing
 plot_results.py. The variables at the top of this script will need to be
