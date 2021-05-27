@@ -16,8 +16,8 @@ from optimization.lp_solver import LPSolver
 # setup_list = [shortest_paths_setup]
 # save_dir = "results_shortest_paths"
 # setup_list = [random_resource_setup, shortest_paths_setup]
-setup_list = [random_resource_setup]
-save_dir = "results_random_resource"
+setup_list = [random_resource_setup, shortest_paths_setup]
+save_dir = "results"
 
 
 def main():
@@ -30,8 +30,6 @@ def run_experiment(setup):
 
     n_range = sorted(setup["n_range"], reverse=True)
     num_procs = setup["num_procs"]
-    num_reps = setup["num_reps"]
-    num_jobs = len(n_range) * num_reps
 
     if num_procs == 1:
         # run jobs sequentially
@@ -42,10 +40,12 @@ def run_experiment(setup):
         # run jobs in separate processes using queue'd system
         jobs_queue = Queue()
         results_queue = Queue()
+        num_jobs = 0
 
         for n in n_range:
             for rep_i in range(setup["num_reps"]):
                 jobs_queue.put((setup, n, rep_i))
+                num_jobs += 1
 
         procs = []
         for i in range(num_procs):

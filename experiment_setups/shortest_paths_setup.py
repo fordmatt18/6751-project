@@ -1,4 +1,5 @@
 from benchmark_methods.predict_then_optimize import PredictThenOptimize
+from benchmark_methods.random_weights import RandomWeights
 from benchmark_methods.spo_plus import SPOPlus
 from end_to_end_methods.iterative_sw_method import \
     IterativeSWMethod
@@ -31,7 +32,7 @@ method_list = [
     {
         "name": "VariableDecisionLinearIter",
         "placeholder_options": {
-            "epsilon": [1e-1, 1e0, 1e1],
+            "epsilon": [1e0, 1e1, 5e1],
             "num_iter": [2, 3],
         },
         "class": IterativeSWMethod,
@@ -52,7 +53,7 @@ method_list = [
     {
         "name": "VariableDecisionLinearNP",
         "placeholder_options": {
-            "epsilon": [1e-1, 1e0, 1e1],
+            "epsilon": [1e0, 1e1, 5e1],
         },
         "class": NonparametricSWMethod,
         "args": {
@@ -73,7 +74,7 @@ method_list = [
     {
         "name": "MultiVariableDecisionLinearIter",
         "placeholder_options": {
-            "epsilon": [1e-1, 1e0, 1e1],
+            "epsilon": [1e0, 1e1, 5e1],
             "num_iter": [2, 3],
         },
         "class": IterativeSWMethod,
@@ -94,7 +95,7 @@ method_list = [
     {
         "name": "MultiVariableDecisionLinearNP",
         "placeholder_options": {
-            "epsilon": [1e-1, 1e0, 1e1],
+            "epsilon": [1e0, 1e1, 5e1],
         },
         "class": NonparametricSWMethod,
         "args": {
@@ -115,7 +116,7 @@ method_list = [
     {
         "name": "MaximumSuboptimalityLinearIter",
         "placeholder_options": {
-            "epsilon-scale": [1.0, 5.0],
+            "epsilon-scale": [5.0, 10.0],
             "num_iter": [2, 3],
         },
         "class": IterativeSWMethod,
@@ -137,7 +138,7 @@ method_list = [
     {
         "name": "MaximumSuboptimalityLinearNP",
         "placeholder_options": {
-            "epsilon-scale": [1.0, 5.0],
+            "epsilon-scale": [5.0, 10.0],
         },
         "class": NonparametricSWMethod,
         "args": {
@@ -159,7 +160,7 @@ method_list = [
     {
         "name": "MultiMaximumSuboptimalityLinearIter",
         "placeholder_options": {
-            "epsilon-scale": [1.0, 5.0],
+            "epsilon-scale": [5.0, 10.0],
             "num_iter": [2, 3],
         },
         "class": IterativeSWMethod,
@@ -181,7 +182,7 @@ method_list = [
     {
         "name": "MultiMaximumSuboptimalityLinearNP",
         "placeholder_options": {
-            "epsilon-scale": [1.0, 5.0],
+            "epsilon-scale": [5.0, 10.0],
         },
         "class": NonparametricSWMethod,
         "args": {
@@ -303,27 +304,45 @@ benchmark_list = [
         "args": {
             "lmbda": 0.1,
         }
-    }
+    },
+    {
+        "name": "RandomWeights",
+        "class": RandomWeights,
+        "args": {
+            "num_weights": 1000,
+            "multi": False,
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
+    {
+        "name": "RandomWeightsMulti",
+        "class": RandomWeights,
+        "args": {
+            "num_weights": 1000,
+            "multi": True,
+            "predict_class": LinearPredictMethod,
+            "predict_args": {},
+        },
+    },
 ]
 
-# n_range = [10000, 5000, 2000, 1000, 500, 200, 100]
-# n_range = [1000, 100]
-n_range = [100]
-num_test = 1000
+n_range = [1000, 500, 200, 100, 50]
+num_test = 10000
 num_reps = 32
 num_procs = 1
 batch_size = 5
 
 
 shortest_paths_setup = {
-    "setup_name": "shortest_paths_setup",
+    "setup_name": "shortest_paths_setup_rest",
     "environment": {
         "class": ShortestPathEnvironment,
         "args": {}
     },
     "n_range": n_range,
     "num_test": num_test,
-    "verbose": True,
+    "verbose": False,
     "num_reps": num_reps,
     "num_procs": num_procs,
     "methods": method_list,

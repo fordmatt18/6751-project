@@ -3,6 +3,8 @@ import cvxpy as cp
 import numpy as np
 from scipy.linalg import block_diag
 from scipy.optimize import linprog
+import gurobipy as gp
+from scipy.sparse import csr_matrix
 
 from sensitivity_methods.abstract_sensitivity_method import \
     AbstractSensitivityMethod
@@ -72,12 +74,21 @@ class VariableDecisionSensitivityMethod(AbstractSensitivityMethod):
                                  bounds=(None, None), method=self.method)
                 upper_sol = result.x.reshape(k, -1)
             except:
-                z_var = cp.Variable(len(c))
-                obj = c @ z_var
-                constraints = [a_dual @ z_var <= b_dual_upper]
-                prob = cp.Problem(cp.Minimize(obj), constraints)
-                prob.solve()
-                upper_sol = z_var.value.reshape(k, -1)
+                model = gp.Model("VarDecisionUpperOpt")
+                model.Params.LogToConsole = 0
+                model.Params.Method = 5
+                z_var = model.addMVar(len(c), lb=-gp.GRB.INFINITY)
+                model.setObjective(c @ z_var, gp.GRB.MINIMIZE)
+                model.addConstr(csr_matrix(a_dual) @ z_var <= b_dual_upper)
+                model.optimize()
+                upper_sol = z_var.X.reshape(k, -1)
+                # z_var = cp.Variable(len(c))
+                # obj = c @ z_var
+                # constraints = [a_dual @ z_var <= b_dual_upper]
+                # prob = cp.Problem(cp.Minimize(obj), constraints)
+                # prob.solve()
+                # upper_sol = z_var.value.reshape(k, -1)
+
             upper_bound = (upper_sol * (-1.0 * c).reshape(k, -1)).sum(1)
 
             # computer lower bounds
@@ -86,12 +97,21 @@ class VariableDecisionSensitivityMethod(AbstractSensitivityMethod):
                                  bounds=(None, None), method=self.method)
                 lower_sol = result.x.reshape(k, -1)
             except:
-                z_var = cp.Variable(len(c))
-                obj = c @ z_var
-                constraints = [a_dual @ z_var <= b_dual_lower]
-                prob = cp.Problem(cp.Minimize(obj), constraints)
-                prob.solve()
-                lower_sol = z_var.value.reshape(k, -1)
+                model = gp.Model("VarDecisionLowerOpt")
+                model.Params.LogToConsole = 0
+                model.Params.Method = 5
+                z_var = model.addMVar(len(c), lb=-gp.GRB.INFINITY)
+                model.setObjective(c @ z_var, gp.GRB.MINIMIZE)
+                model.addConstr(csr_matrix(a_dual) @ z_var <= b_dual_lower)
+                model.optimize()
+                lower_sol = z_var.X.reshape(k, -1)
+                # z_var = cp.Variable(len(c))
+                # obj = c @ z_var
+                # constraints = [a_dual @ z_var <= b_dual_lower]
+                # prob = cp.Problem(cp.Minimize(obj), constraints)
+                # prob.solve()
+                # lower_sol = z_var.value.reshape(k, -1)
+
             lower_bound = (lower_sol * (-1.0 * c).reshape(k, -1)).sum(1)
 
             sensitivity_array[idx] = upper_bound - lower_bound

@@ -4,6 +4,8 @@ import numpy as np
 import torch
 from scipy.optimize import linprog
 import cvxpy as cp
+import gurobipy as gp
+from scipy.sparse import csr_matrix
 
 from benchmark_methods.abstract_benchmark import AbstractBenchmark
 
@@ -85,20 +87,33 @@ class SPOPlus(AbstractBenchmark):
         bounds.extend([(0, None) for _ in range(m * p + n * d)])
 
         # set up and solve LP
-        try:
-            results = linprog(c=c, A_eq=a_main, b_eq=b_main,
-                              A_ub=a_reg, b_ub=b_reg, bounds=bounds,
-                              method=self.method)
-            w = results.x[:m*p].reshape(m, p)
-        except:
-            z_var = cp.Variable(len(c))
-            obj = c @ z_var
-            constraints = [a_main @ z_var == b_main,
-                           a_reg @ z_var <= b_reg,
-                           z_var[m*p:] >= 0]
-            prob = cp.Problem(cp.Minimize(obj), constraints)
-            prob.solve()
-            w = z_var.value[:m*p].reshape(m, p)
+        # try:
+        #     results = linprog(c=c, A_eq=a_main, b_eq=b_main,
+        #                       A_ub=a_reg, b_ub=b_reg, bounds=bounds,
+        #                       method=self.method)
+        #     w = results.x[:m*p].reshape(m, p)
+        # except:
+
+        # z_var = cp.Variable(len(c))
+        # obj = c @ z_var
+        # constraints = [a_main @ z_var == b_main,
+        #                a_reg @ z_var <= b_reg,
+        #                z_var[m*p:] >= 0]
+        # prob = cp.Problem(cp.Minimize(obj), constraints)
+        # prob.solve()
+        # w = z_var.value[:m*p].reshape(m, p)
+
+        model = gp.Model("SPOPlus")
+        model.Params.LogToConsole = 0
+        lb = []
+        lb.extend([-gp.GRB.INFINITY for _ in range(m * p)])
+        lb.extend([0 for _ in range(m * p + n * d)])
+        z_var = model.addMVar(len(c), lb=lb)
+        model.setObjective(c @ z_var, gp.GRB.MINIMIZE)
+        model.addConstr(csr_matrix(a_main) @ z_var == b_main)
+        model.addConstr(csr_matrix(a_reg) @ z_var <= b_reg)
+        model.optimize()
+        w = z_var.X[:m * p].reshape(m, p)
 
         self.w = torch.from_numpy(w).float()
 

@@ -1,8 +1,10 @@
 import scipy.linalg
+import gurobipy as gp
 from scipy.optimize import linprog
 import cvxpy as cp
 import numpy as np
 import torch
+from scipy.sparse import csr_matrix
 
 
 class LPSolver(object):
@@ -74,26 +76,33 @@ class LPSolver(object):
                 a_ub_cat = None
                 b_ub_cat = None
 
+
             try:
                 result = linprog(c=y_cat, A_eq=a_eq_cat, b_eq=b_eq_cat,
                                  A_ub=a_ub_cat, b_ub=b_ub_cat,
                                  method=self.method)
                 solutions_list.append(result.x.reshape(k, m))
             except:
-                # result = linprog(c=y_cat, A_eq=a_eq_cat, b_eq=b_eq_cat,
-                #                  A_ub=a_ub_cat, b_ub=b_ub_cat)
-                # solutions_list.append(result.x.reshape(k, m))
-                z_var = cp.Variable(len(y_cat))
-                obj = y_cat @ z_var
-                constraints = [z_var >= 0]
+                model = gp.Model("LP")
+                model.Params.LogToConsole = 0
+                z_var = model.addMVar(len(y_cat))
+                model.setObjective(y_cat.numpy() @ z_var, gp.GRB.MINIMIZE)
                 if a_eq_cat is not None:
-                    constraints.append(a_eq_cat @ z_var == b_eq_cat)
+                    model.addConstr(csr_matrix(a_eq_cat) @ z_var == b_eq_cat)
                 if a_ub_cat is not None:
-                    constraints.append(a_ub_cat @ z_var == b_ub_cat)
-                prob = cp.Problem(cp.Minimize(obj), constraints)
-                prob.solve()
-                solutions_list.append(z_var.value.reshape(k, m))
-
+                    model.addConstr(csr_matrix(a_ub_cat) @ z_var <= b_ub_cat)
+                model.optimize()
+                solutions_list.append(z_var.X.reshape(k, m))
+                # z_var = cp.Variable(len(y_cat))
+                # obj = y_cat @ z_var
+                # constraints = [z_var >= 0]
+                # if a_eq_cat is not None:
+                #     constraints.append(a_eq_cat @ z_var == b_eq_cat)
+                # if a_ub_cat is not None:
+                #     constraints.append(a_ub_cat @ z_var == b_ub_cat)
+                # prob = cp.Problem(cp.Minimize(obj), constraints)
+                # prob.solve()
+                # solutions_list.append(z_var.value.reshape(k, m))
 
         z = np.concatenate(solutions_list, axis=0)
         return torch.from_numpy(z).float()

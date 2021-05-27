@@ -327,12 +327,10 @@ benchmark_list = [
     },
 ]
 
-# n_range = [10000, 5000, 2000, 1000, 500, 200, 100]
-# n_range = [1000, 100]
 n_range = [1000, 500, 200, 100, 50]
 num_test = 10000
 num_reps = 32
-num_procs = 8
+num_procs = 1
 batch_size = 20
 
 
@@ -344,7 +342,7 @@ random_resource_setup = {
     },
     "n_range": n_range,
     "num_test": num_test,
-    "verbose": True,
+    "verbose": False,
     "num_reps": num_reps,
     "num_procs": num_procs,
     "methods": method_list,

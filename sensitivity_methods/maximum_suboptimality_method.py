@@ -6,6 +6,8 @@ import numpy as np
 from scipy.linalg import block_diag
 from scipy.optimize import linprog
 import cvxpy as cp
+import gurobipy as gp
+from scipy.sparse import csr_matrix
 
 from sensitivity_methods.abstract_sensitivity_method import \
     AbstractSensitivityMethod
@@ -121,20 +123,35 @@ class MaximumSuboptimalitySensitivityMethod(AbstractSensitivityMethod):
                     h_batch = zh[k*m:]
                     success = True
                 except:
-                    # t0 = time.time()
-                    z = cp.Variable(len(c))
-                    obj = c @ z
-                    constraints = [a_eq_full @ z == b_eq_full,
-                                   a_ub_full @ z <= b_ub_full, z >= 0]
                     try:
-                        prob = cp.Problem(cp.Minimize(obj), constraints)
-                        prob.solve()
-                        zh = z.value
-                        z_s_batch = zh[:k*m].reshape(k, m)
-                        h_batch = zh[k*m:]
+                        model = gp.Model("MaxSubOpt")
+                        model.Params.LogToConsole = 0
+                        model.Params.Method = 5
+                        z_var = model.addMVar(len(c))
+                        model.setObjective(c @ z_var, gp.GRB.MINIMIZE)
+                        model.addConstr(a_eq_full @ z_var == b_eq_full)
+                        model.addConstr(a_ub_full @ z_var <= b_ub_full)
+                        model.optimize()
+                        z_s_batch = z_var.X[:k * m].reshape(k, m)
+                        h_batch = z_var.X[k * m:]
                         success = True
                     except:
                         success = False
+                    # # t0 = time.time()
+                    # z = cp.Variable(len(c))
+                    # obj = c @ z
+                    # constraints = [a_eq_full @ z == b_eq_full,
+                    #                a_ub_full @ z <= b_ub_full, z >= 0]
+                    # try:
+                    #     prob = cp.Problem(cp.Minimize(obj), constraints)
+                    #     prob.solve()
+                    #     zh = z.value
+                    #     z_s_batch = zh[:k*m].reshape(k, m)
+                    #     h_batch = zh[k*m:]
+                    #     success = True
+                    # except:
+                    #     success = False
+
 
                 # re-construct optimal solutions
                 if success:
